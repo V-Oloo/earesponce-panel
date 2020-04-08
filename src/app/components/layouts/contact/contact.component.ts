@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HomeService } from '../../services/home.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact',
@@ -10,10 +9,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ContactComponent implements OnInit {
     Form: FormGroup;
-  constructor(private fb: FormBuilder, private service: HomeService, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, private service: HomeService) { }
 
   public submitted = false;
   public loading = false;
+  message: string;
+  error: string;
 
   get subj() {
     return this.Form.get('subject');
@@ -51,12 +52,11 @@ export class ContactComponent implements OnInit {
       this.service.contactUs(this.Form.value).subscribe(
           res => {
               this.loading=false,
-              this.toastr.success('Success!', 'Message submitted Succesfully!');
+              this.message = res.success
               this.Form.reset()},
           err => {this.loading=false,
-            this.toastr.error('Error!', err.error.message);
+            this.error= err.error.message
              console.log(err)}
       );
   }
-
 }

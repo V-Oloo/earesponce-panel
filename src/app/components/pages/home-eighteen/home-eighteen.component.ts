@@ -205,7 +205,7 @@ export class HomeEighteenComponent implements OnInit {
 
       this.service.login(this.loginForm.value).subscribe(
           res => {this.message = res.success},
-          err => {this.error= err.error}
+          err => {this.error= err.error.message}
       );
   }
 
