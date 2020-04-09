@@ -15,7 +15,7 @@ export class HomeService {
   }
 
   login(data: any) {
-    return this.http.post<any>(this.global._BaseUri + '/panelist/login', data);
+    return this.http.post<any>(this.global._BaseUri + '/login/api', data);
   }
 
   contactUs(data: any) {

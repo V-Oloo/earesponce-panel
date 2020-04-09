@@ -38,8 +38,7 @@
                 "src/assets/css/style.scss",
                 "src/assets/css/responsive.scss",
                 "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-                "src/styles.scss",
-                "node_modules/ngx-toastr/toastr.css"
+                "src/styles.scss"
             ],
             "scripts": [
                 "node_modules/jquery/dist/jquery.min.js",

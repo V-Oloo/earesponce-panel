@@ -19,6 +19,8 @@ export class HomeEighteenComponent implements OnInit {
   public loading = false;
   message: string;
   error: string;
+  lmessage: string;
+  lerror: string;
 
   get fname() {
     return this.registrationForm.get('first_name');
@@ -198,14 +200,24 @@ export class HomeEighteenComponent implements OnInit {
   loginUser() {
     this.submitted = true;
 
-      if (this.registrationForm.invalid) {
+      if (this.loginForm.invalid) {
         // this.loading = false;
          return;
       }
-
+       console.log(this.loginForm.value);
+       this.loading = true;
       this.service.login(this.loginForm.value).subscribe(
-          res => {this.message = res.success},
-          err => {this.error= err.error.message}
+          res => {
+              this.loading = false
+              const url = res.redirect_to
+              console.log(url)
+              window.location.href = url
+              this.lmessage = res.success,
+              console.log(res)},
+          err => {
+              this.loading = false
+              this.lerror= err.error.message,
+              console.log(err)}
       );
   }
 
