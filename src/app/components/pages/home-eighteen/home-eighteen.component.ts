@@ -14,14 +14,17 @@ import { DatePipe } from '@angular/common';
 export class HomeEighteenComponent implements OnInit {
   registrationForm: FormGroup;
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, private service: HomeService, private _route: ActivatedRoute, private datePipe: DatePipe) { }
+  constructor(private fb: FormBuilder,
+              private service: HomeService,
+              private _route: ActivatedRoute,
+              private datePipe: DatePipe) { }
   public submitted = false;
   public loading = false;
   message: string;
   error: string;
   lmessage: string;
   lerror: string;
-
+  today = new Date();
   get fname() {
     return this.registrationForm.get('first_name');
   }
@@ -96,7 +99,10 @@ export class HomeEighteenComponent implements OnInit {
 
   countries; regions; empState; maritalState; education; filterRegions;
 
+  urlParams: any = {};
+
   ngOnInit() {
+    this.urlParams.ref = this._route.snapshot.queryParamMap.get('ref');
     this.getDashboardData();
     this.registrationForm = this.fb.group({
         first_name: ['', [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
@@ -178,11 +184,12 @@ export class HomeEighteenComponent implements OnInit {
         const password= this.registrationForm.value.password
         const town = this.registrationForm.value.town
         const number = country_code + phone_no
+        const ref = this.urlParams.ref
 
         let data = {first_name: first_name,last_name: last_name,gender: gender,dob: dob,email:email,
                       country_id: country_id,region_id: region_id,phone_no: number,education_level_id: education_level_id,
                       employment_status_id: employment_status_id,marital_status_id: marital_status_id,
-                      password: password, town: town}
+                      password: password, town: town, ref: ref}
 
        this.service.register(data).subscribe(
            res => {
