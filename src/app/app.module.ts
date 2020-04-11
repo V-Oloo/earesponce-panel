@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PreloaderComponent } from './components/layouts/preloader/preloader.component';
@@ -13,6 +12,7 @@ import { NavbarComponent } from './components/layouts/navbar/navbar.component';
 import { WhoWeAreComponent } from './components/layouts/who-we-are/who-we-are.component';
 import { HomeEighteenComponent } from './components/pages/home-eighteen/home-eighteen.component';
 import { ErrorComponent } from './components/pages/error/error.component';
+import { FaqComponent } from './components/layouts/faq/faq.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { HttpClientModule} from '@angular/common/http';
 import { Globals } from './global';
@@ -28,6 +28,7 @@ import { DatePipe } from '@angular/common';
     WhoWeAreComponent,
     HomeEighteenComponent,
     ErrorComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,

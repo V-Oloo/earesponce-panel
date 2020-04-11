@@ -2,7 +2,7 @@ import { HomeService } from './../../services/home.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MustMatch } from './password.validator';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash'
 import { DatePipe } from '@angular/common';
 
@@ -17,14 +17,17 @@ export class HomeEighteenComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private service: HomeService,
               private _route: ActivatedRoute,
-              private datePipe: DatePipe) { }
+              private datePipe: DatePipe,
+              ) { }
   public submitted = false;
   public loading = false;
+  showForms = true;
   message: string;
   error: string;
   lmessage: string;
   lerror: string;
   today = new Date();
+  days;
   get fname() {
     return this.registrationForm.get('first_name');
   }
@@ -110,7 +113,7 @@ export class HomeEighteenComponent implements OnInit {
         gender: ['', [Validators.required]],
         dob: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email ]],
-        // verify_email: ['', [Validators.required, Validators.email ]],
+        verify_email: ['', [Validators.required]],
         country_id: ['', [Validators.required]],
         region_id: ['', [Validators.required]],
         phone_no: ['', [Validators.required]],
@@ -121,7 +124,7 @@ export class HomeEighteenComponent implements OnInit {
         country_code: [{value: '', disabled: true}],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirm_pass: ['', [Validators.required]],
-      },{validators: MustMatch('password', 'confirm_pass'), validator: MustMatch('email','verify_email')});
+      },{validators:[MustMatch('password', 'confirm_pass'), MustMatch('email','verify_email')]});
 
       this.loginForm = this.fb.group({
         email: ['', [Validators.required]],
@@ -193,12 +196,17 @@ export class HomeEighteenComponent implements OnInit {
 
        this.service.register(data).subscribe(
            res => {
+
                this.loading = false,
+               this.showForms = false;
                this.message = res.success
                console.log(res);
                this.registrationForm.reset();
             },
-           err => {this.loading = false, this.error= err.error.message, console.log(err)}
+           err => {
+               this.loading = false,
+               this.error= err.error.message,
+               console.log(err)}
 
            );
       console.log(this.registrationForm.value);
