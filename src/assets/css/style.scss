@@ -108,6 +108,11 @@ img {
         vertical-align: middle;
     }
 }
+.item-bg4 {
+    background: {
+        image: url(../../assets/img/image-1.jpeg);
+    }
+}
 /*btn btn-primary*/
 .btn {
     color: $white-color;

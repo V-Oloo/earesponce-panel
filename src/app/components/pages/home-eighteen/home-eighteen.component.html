@@ -76,8 +76,8 @@
                                             <input formControlName="first_name" type="text" class="form-control" placeholder="Enter first name">
                                             <div class="form-control-feedback"
                                                *ngIf="fname.errors && (fname.dirty || fname.touched) || submitted">
-                                               <span style="color: red;" *ngIf="fname.errors.required">field required</span>
-                                               <span style="color: red;" *ngIf="fname.errors.pattern">numerics and symbols not allowed</span>
+                                               <span style="color: red;" *ngIf="fname.errors?.required">field required</span>
+                                               <span style="color: red;" *ngIf="fname.errors?.pattern">numerics and symbols not allowed</span>
                                             </div>
                                         </div>
                                     </div>
@@ -87,8 +87,8 @@
                                             <input formControlName="last_name" type="text" class="form-control" placeholder="Enter last name">
                                             <div class="form-control-feedback"
                                                *ngIf="lname.errors && (lname.dirty || lname.touched) || submitted">
-                                               <span style="color: red;" *ngIf="lname.errors.required">field required</span>
-                                               <span style="color: red;" *ngIf="lname.errors.pattern">numerics and symbols not allowed</span>
+                                               <span style="color: red;" *ngIf="lname.errors?.required">field required</span>
+                                               <span style="color: red;" *ngIf="lname.errors?.pattern">numerics and symbols not allowed</span>
                                             </div>
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@
                                                 <option>Female</option>
                                              </select>
                                             <div class="form-control-feedback" *ngIf="gender.errors && (gender.dirty || gender.touched) || submitted">
-                                               <span style="color: red;" *ngIf="gender.errors.required">field required</span>
+                                               <span style="color: red;" *ngIf="gender.errors?.required">field required</span>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +119,7 @@
                                                 [maxDate]="today"
                                                 bsDatepicker>
                                                 <div class="form-control-feedback" *ngIf="dob.errors && (dob.dirty || dob.touched) || submitted">
-                                                    <span style="color: red;" *ngIf="dob.errors.required">field required</span>
+                                                    <span style="color: red;" *ngIf="dob.errors?.required">field required</span>
                                                  </div>
                                         </div>
                                     </div>
@@ -132,8 +132,8 @@
                                             <label>Email<span style="color: red;">*</span></label>
                                             <input formControlName="email" type="email" class="form-control" placeholder="Enter email address">
                                             <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched) || submitted">
-                                                <span style="color: red;" *ngIf="email.errors.required">field required</span>
-                                                <span style="color: red;" *ngIf="email.errors.email">Invalid Email</span>
+                                                <span style="color: red;" *ngIf="email.errors?.required">field required</span>
+                                                <span style="color: red;" *ngIf="email.errors?.email">Invalid Email</span>
                                              </div>
                                         </div>
                                     </div>
@@ -143,8 +143,8 @@
                                             <input (paste)="$event.preventDefault()" formControlName="verify_email" type="email" class="form-control" placeholder="verify email">
 
                                             <div class="form-control-feedback" *ngIf="vemail.errors && (vemail.dirty || vemail.touched) || submitted">
-                                                <span style="color: red;" *ngIf="vemail.errors.required">field required</span>
-                                                <span style="color: red;" *ngIf="vemail.errors.mustMatch">email fields do not match</span>
+                                                <span style="color: red;" *ngIf="vemail.errors?.required">field required</span>
+                                                <span style="color: red;" *ngIf="vemail.errors?.mustMatch">email fields do not match</span>
                                              </div>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@
                                                 <option *ngFor="let city of countries" [ngValue]="city.country_id" >{{city.country_name}}</option>
                                              </select>
                                              <div class="form-control-feedback" *ngIf="cid.errors && (cid.dirty || cid.touched) || submitted">
-                                                <span style="color: red;" *ngIf="cid.errors.required">field required</span>
+                                                <span style="color: red;" *ngIf="cid.errors?.required">field required</span>
 
                                              </div>
                                         </div>
@@ -186,7 +186,7 @@
 
                                              </select>
                                              <div class="form-control-feedback" *ngIf="rid.errors && (rid.dirty || rid.touched) || submitted">
-                                                <span style="color: red;" *ngIf="rid.errors.required">field required</span>
+                                                <span style="color: red;" *ngIf="rid.errors?.required">field required</span>
 
                                              </div>
                                         </div>
@@ -198,7 +198,7 @@
                                             <input formControlName="town"  type="text" class="form-control" placeholder="Enter your town">
                                         </div>
                                         <div class="form-control-feedback" *ngIf="town.errors && (town.dirty || town.touched) || submitted">
-                                            <span style="color: red;" *ngIf="town.errors.required">field required</span>
+                                            <span style="color: red;" *ngIf="town.errors?.required">field required</span>
 
                                          </div>
                                     </div>
@@ -213,7 +213,7 @@
                                             <input formControlName="phone_no" type="number" pattern="\d*" onKeyPress="if(this.value.length==10) return false;"  class="form-control" placeholder="Enter phone number">
                                         </div>
                                         <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched) || submitted">
-                                            <span style="color: red;" *ngIf="phone.errors.required">field required</span>
+                                            <span style="color: red;" *ngIf="phone.errors?.required">field required</span>
 
                                          </div>
                                     </div>
@@ -227,7 +227,7 @@
 
                                              </select>
                                              <div class="form-control-feedback" *ngIf="edl.errors && (edl.dirty || edl.touched) || submitted">
-                                                <span style="color: red;" *ngIf="edl.errors.required">field required</span>
+                                                <span style="color: red;" *ngIf="edl.errors?.required">field required</span>
 
                                              </div>
                                         </div>
@@ -246,7 +246,7 @@
 
                                              </select>
                                              <div class="form-control-feedback" *ngIf="esi.errors && (esi.dirty || esi.touched) || submitted">
-                                                <span style="color: red;" *ngIf="esi.errors.required">field required</span>
+                                                <span style="color: red;" *ngIf="esi.errors?.required">field required</span>
 
                                              </div>
                                         </div>
@@ -261,7 +261,7 @@
 
                                              </select>
                                              <div class="form-control-feedback" *ngIf="msi.errors && (msi.dirty || msi.touched) || submitted">
-                                                <span style="color: red;" *ngIf="msi.errors.required">field required</span>
+                                                <span style="color: red;" *ngIf="msi.errors?.required">field required</span>
 
                                              </div>
                                         </div>
@@ -281,8 +281,8 @@
                                             <input formControlName="password" type="password" class="form-control" placeholder="Enter password">
 
                                               <div class="form-control-feedback" *ngIf="pass.errors && (pass.dirty || pass.touched) || submitted">
-                                                <span style="color: red;" *ngIf="pass.errors.required">field required</span>
-                                                <span style="color: red;" *ngIf="pass.errors.minlength">Password must be at least 6 characters</span>
+                                                <span style="color: red;" *ngIf="pass.errors?.required">field required</span>
+                                                <span style="color: red;" *ngIf="pass.errors?.minlength">Password must be at least 6 characters</span>
                                              </div>
                                         </div>
                                     </div>
@@ -293,12 +293,20 @@
                                             <input formControlName="confirm_pass" type="password" class="form-control" placeholder="Confirm password">
 
                                             <div class="form-control-feedback" *ngIf="cpass.errors && (cpass.dirty || cpass.touched) || submitted">
-                                                <span style="color: red;" *ngIf="cpass.errors.required">field required</span>
-                                                <span style="color: red;" *ngIf="cpass.errors.mustMatch">Passwords must match</span>
+                                                <span style="color: red;" *ngIf="cpass.errors?.required">field required</span>
+                                                <span style="color: red;" *ngIf="cpass.errors?.mustMatch">Passwords must match</span>
                                              </div>
                                         </div>
                                     </div>
 
+                                </div>
+
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="terms">
+                                    <label class="form-check-label" for="exampleCheck1">I agree with Terms of Service & Privacy</label>
+                                    <div class="form-control-feedback" *ngIf="registrationForm.controls['terms'].errors && (registrationForm.controls['terms'].dirty || registrationForm.controls['terms'].touched) || submitted" >
+                                        <span style="color: red;" *ngIf="registrationForm.controls['terms'].errors && registrationForm.controls['terms'].errors.required">accept terms & conditions</span>
+                                     </div>
                                 </div>
 
                                     <button type="submit" class="btn btn-primary" [disabled]="loading">

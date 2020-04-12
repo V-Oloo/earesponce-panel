@@ -5,6 +5,7 @@ import { MustMatch } from './password.validator';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash'
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-eighteen',
@@ -18,6 +19,8 @@ export class HomeEighteenComponent implements OnInit {
               private service: HomeService,
               private _route: ActivatedRoute,
               private datePipe: DatePipe,
+              private router: Router,
+              private toastr: ToastrService
               ) { }
   public submitted = false;
   public loading = false;
@@ -124,6 +127,7 @@ export class HomeEighteenComponent implements OnInit {
         country_code: [{value: '', disabled: true}],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirm_pass: ['', [Validators.required]],
+        terms: ['',[Validators.requiredTrue]],
       },{validators:[MustMatch('password', 'confirm_pass'), MustMatch('email','verify_email')]});
 
       this.loginForm = this.fb.group({
@@ -199,13 +203,14 @@ export class HomeEighteenComponent implements OnInit {
 
                this.loading = false,
                this.showForms = false;
-               this.message = res.success
+              this.router.navigate(['/success'])
                console.log(res);
                this.registrationForm.reset();
             },
            err => {
                this.loading = false,
                this.error= err.error.message,
+               this.toastr.error('Error!', this.error, {timeOut: 8000, closeButton: true});
                console.log(err)}
 
            );
