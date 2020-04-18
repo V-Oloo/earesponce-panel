@@ -1,3 +1,5 @@
+import { PrivacyComponent } from './components/pages/privacy/privacy.component';
+import { TermsComponent } from './components/pages/terms/terms.component';
 import { SuccessComponent } from './components/pages/success/success.component';
 import { ContactComponent } from './components/layouts/contact/contact.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,7 +33,9 @@ import { DatePipe } from '@angular/common';
     WhoWeAreComponent,
     HomeEighteenComponent,
     ErrorComponent,
-    FaqComponent
+    FaqComponent,
+    TermsComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,

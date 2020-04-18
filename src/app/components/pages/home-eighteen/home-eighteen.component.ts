@@ -31,6 +31,8 @@ export class HomeEighteenComponent implements OnInit {
   lerror: string;
   today = new Date();
   days;
+  towns;
+  region_towns
   get fname() {
     return this.registrationForm.get('first_name');
   }
@@ -103,9 +105,23 @@ export class HomeEighteenComponent implements OnInit {
     return this.loginForm.get('email');
   }
 
-  countries; regions; empState; maritalState; education; filterRegions;
+  get category() {
+    return this.registrationForm.get('sector_category_id');
+  }
+
+  get sector() {
+    return this.registrationForm.get('sector_id');
+  }
+
+  get health() {
+    return this.registrationForm.get('health_care');
+  }
+
+  countries; regions; empState; maritalState; education; filterRegions; healthCartegory
 
   urlParams: any = {};
+
+  showHealthcareFields = false
 
   ngOnInit() {
     this.urlParams.ref = this._route.snapshot.queryParamMap.get('ref');
@@ -127,6 +143,9 @@ export class HomeEighteenComponent implements OnInit {
         country_code: [{value: '', disabled: true}],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirm_pass: ['', [Validators.required]],
+        health_care: ['', [Validators.required]],
+        sector_id: ['', [Validators.required]],
+        sector_category_id: ['', [Validators.required]],
         terms: ['',[Validators.requiredTrue]],
       },{validators:[MustMatch('password', 'confirm_pass'), MustMatch('email','verify_email')]});
 
@@ -144,22 +163,32 @@ export class HomeEighteenComponent implements OnInit {
         this.education = data.stats[2];
         this.empState = data.stats[3];
         this.maritalState = data.stats[4]
-        console.log(this.education);
+        this.towns = data.stats[5]
+        this.healthCartegory = data.stats[6];
+        console.log(this.healthCartegory);
     });
   }
 
   getCountryRegion(event: any) {
 
      const id = event.target.selectedIndex
-     console.log(id);
+    //  console.log(id);
      this.filterRegions = _.filter(this.regions, { 'country_id': id });
-     console.log(this.filterRegions);
+     //console.log(this.filterRegions);
      this.selectedCountry(id);
   }
 
+  getRegionTown(event: any) {
+
+    const id = event.target.selectedIndex
+    this.region_towns = _.filter(this.towns, { 't_region_id': id });
+    // console.log(this.region_towns);
+ }
+
+
   selectedCountry(id: number) {
     const result = _.find(this.countries, {'country_id' : id});
-    console.log(result);
+    //console.log(result);
     const code = result.phone_code;
     this.registrationForm.patchValue({
      country_code: code,
@@ -167,9 +196,39 @@ export class HomeEighteenComponent implements OnInit {
 
    }
 
+   setradio(value) {
+
+    const category = this.registrationForm.controls['sector_category_id']
+    const sector = this.registrationForm.controls['sector_id']
+
+    if(value === '1'){
+        this.showHealthcareFields = true
+
+        this.registrationForm.get('health_care').valueChanges.subscribe(health_care => {
+             category.setValidators([Validators.required]);
+             category.updateValueAndValidity();
+             sector.setValidators([Validators.required]);
+             sector.updateValueAndValidity();
+        });
+    } else {
+        this.showHealthcareFields = false
+        this.registrationForm.get('health_care').valueChanges.subscribe(health_care => {
+            category.setValidators(null);
+            category.updateValueAndValidity();
+            sector.setValidators(null);
+            sector.updateValueAndValidity();
+       });
+
+    }
+
+
+
+
+   }
+
   registerUser() {
     this.submitted = true;
-
+     console.log(this.registrationForm.value)
      if (this.registrationForm.invalid) {
         this.loading = false;
          return;
@@ -190,13 +249,18 @@ export class HomeEighteenComponent implements OnInit {
         const country_code= this.registrationForm.getRawValue().country_code
         const password= this.registrationForm.value.password
         const town = this.registrationForm.value.town
+        const health_care = this.registrationForm.value.health_care
+        const sector_id = this.registrationForm.value.sector_id
+        const sector_category_id = this.registrationForm.value.sector_category_id
         const number = country_code + phone_no
         const ref = this.urlParams.ref
 
         let data = {first_name: first_name,last_name: last_name,gender: gender,dob: dob,email:email,
                       country_id: country_id,region_id: region_id,phone_no: number,education_level_id: education_level_id,
                       employment_status_id: employment_status_id,marital_status_id: marital_status_id,
-                      password: password, town: town, ref: ref}
+                      password: password, town: town, ref: ref, health_care: health_care, sector_id: sector_id,
+                      sector_category_id: sector_category_id
+                    }
 
        this.service.register(data).subscribe(
            res => {

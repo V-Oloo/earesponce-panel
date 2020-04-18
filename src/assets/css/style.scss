@@ -47,7 +47,7 @@ Default CSS
 $main-color: #69ebf5;
 $white-color: #ffffff;
 $black-color: #000000;
-$paragraph-color: #828893;
+$paragraph-color: #000000;
 $font-family: 'Open Sans', sans-serif;
 $font-family2: 'PT Sans', sans-serif;
 $font-size: 15px;
@@ -703,7 +703,7 @@ Main Banner CSS
 }
 .main-banner {
     &.main-banner-with-form {
-        height: 1200px;
+        height: 1400px;
 
         .main-banner-content {
             margin-top: 0;

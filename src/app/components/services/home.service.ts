@@ -41,4 +41,12 @@ export class HomeService {
   getMaritalStatus() {
     return this.http.get(this.global._BaseUri + `/marital_status`).pipe(map((data: any) => data), shareReplay());
   }
+
+  getTowns() {
+    return this.http.get(this.global._BaseUri + `/towns`).pipe(map((data: any) => data), shareReplay())
+  }
+
+   getHealthCare() {
+    return this.http.get(this.global._BaseUri + `/healthcare_categories`).pipe(map((data: any) => data), shareReplay());
+  }
 }

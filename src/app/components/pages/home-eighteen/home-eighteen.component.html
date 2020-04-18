@@ -180,7 +180,7 @@
                                     <div class="col-md-6">
                                         <label>Region/County<span style="color: red;">*</span></label>
                                         <div class="form-group">
-                                            <select class="custom-select" formControlName="region_id">
+                                            <select class="custom-select" (change)="getRegionTown($event)" formControlName="region_id">
                                                 <option value="" disabled>---Select Region/county---</option>
                                                 <option *ngFor="let region of filterRegions" [ngValue]="region.region_id">{{region.region_name}}</option>
 
@@ -194,8 +194,11 @@
                                     <div class="col-md-6">
                                         <label>Town<span style="color: red;">*</span></label>
                                         <div class="form-group">
+                                            <select class="custom-select" (change)="getRegionTown($event)" formControlName="town">
+                                                <option value="" disabled>---Select Region/county---</option>
+                                                <option *ngFor="let region of region_towns" [ngValue]="region.t_town_id">{{region.town_name}}</option>
 
-                                            <input formControlName="town"  type="text" class="form-control" placeholder="Enter your town">
+                                             </select>
                                         </div>
                                         <div class="form-control-feedback" *ngIf="town.errors && (town.dirty || town.touched) || submitted">
                                             <span style="color: red;" *ngIf="town.errors?.required">field required</span>
@@ -219,6 +222,51 @@
                                     </div>
 
                                     <div class="col-md-6">
+                                        <label>Are you a health care worker?<span style="color: red;">*</span></label>
+                                        <div class="form-group">
+
+                                            <input type="radio" (click)="setradio('1')" formControlName="health_care" id="userCategory2" value="1"/> Yes
+                                            <input type="radio" (click)="setradio('2')" formControlName="health_care" id="userCategory1" value="2"/> No
+                                            <div class="form-control-feedback" *ngIf="registrationForm.controls['health_care'].errors && (registrationForm.controls['health_care'].dirty || registrationForm.controls['health_care'].touched) || submitted" >
+                                                <span style="color: red;" *ngIf="registrationForm.controls['health_care'].errors && registrationForm.controls['health_care'].errors.required">required field</span>
+                                             </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6" *ngIf="showHealthcareFields">
+                                        <label>Private Sector or Public Sector?<span style="color: red;">*</span></label>
+                                        <div class="form-group">
+
+                                            <input type="radio" formControlName="sector_id" id="sector_id1" value="1"/> Private
+                                            <input type="radio" formControlName="sector_id" id="sector_id2" value="2"/> Public
+                                            <div class="form-control-feedback" *ngIf="registrationForm.controls['sector_id'].errors && (registrationForm.controls['sector_id'].dirty || registrationForm.controls['sector_id'].touched) || submitted" >
+                                                <span style="color: red;" *ngIf="registrationForm.controls['sector_id'].errors && registrationForm.controls['sector_id'].errors.required">select sector</span>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="showHealthcareFields">
+                                        <label>Category<span style="color: red;">*</span></label>
+                                        <div class="form-group">
+                                            <select class="custom-select" formControlName="sector_category_id">
+                                                <option value="" disabled>---Select your category---</option>
+                                                <option *ngFor="let item of healthCartegory" [ngValue]="item.health_cate_id">{{item.h_category_name}}</option>
+
+                                             </select>
+                                             <div class="form-control-feedback" *ngIf="sector.errors && (sector.dirty || sector.touched) || submitted">
+                                                <span style="color: red;" *ngIf="sector.errors?.required">field required</span>
+
+                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
                                         <label>Education Level<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <select class="custom-select" formControlName="education_level_id">
@@ -232,8 +280,6 @@
                                              </div>
                                         </div>
                                     </div>
-
-
                                 </div>
 
                                 <div class="row">
@@ -304,7 +350,13 @@
                                     <div class="col-md-12">
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="terms">
-                                            <label class="form-check-label" for="exampleCheck1">I agree with Terms of Service & Privacy</label>
+                                            <label class="form-check-label" for="exampleCheck1">
+                                                I agree with
+                                                <a target="_blank" routerLink="/terms-and-contitions">Terms of Service</a>
+                                                &
+                                                <a target="_blank" routerLink="/privacy-policy">Privacy Policy</a>
+
+                                            </label>
                                             <div class="form-control-feedback" *ngIf="registrationForm.controls['terms'].errors && (registrationForm.controls['terms'].dirty || registrationForm.controls['terms'].touched) || submitted" >
                                                 <span style="color: red;" *ngIf="registrationForm.controls['terms'].errors && registrationForm.controls['terms'].errors.required">accept terms & conditions</span>
                                              </div>
