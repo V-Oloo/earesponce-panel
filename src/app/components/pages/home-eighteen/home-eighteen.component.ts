@@ -165,7 +165,8 @@ export class HomeEighteenComponent implements OnInit {
         this.maritalState = data.stats[4]
         this.towns = data.stats[5]
         this.healthCartegory = data.stats[6];
-        console.log(this.healthCartegory);
+        console.log(this.regions);
+        console.log(this.towns);
     });
   }
 
@@ -181,6 +182,7 @@ export class HomeEighteenComponent implements OnInit {
   getRegionTown(event: any) {
 
     const id = event.target.selectedIndex
+    console.log(id)
     this.region_towns = _.filter(this.towns, { 't_region_id': id });
     // console.log(this.region_towns);
  }
@@ -220,9 +222,6 @@ export class HomeEighteenComponent implements OnInit {
        });
 
     }
-
-
-
 
    }
 
