@@ -293,7 +293,6 @@ export class HomeEighteenComponent implements OnInit {
           res => {
               this.loading = false
               const url = res.redirect_to
-              console.log(url)
               window.location.href = url
               this.lmessage = res.success,
               console.log(res)},
