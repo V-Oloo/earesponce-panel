@@ -4,6 +4,17 @@
             <div class="container">
                 <div class="row">
 
+                    <div *ngIf="showForms" class="col-lg-4 col-md-12">
+                        <div class="contact-form text-center">
+
+                            <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                                <p>Have an account? click below to login</p>
+                                <hr/>
+                                <a class="btn btn-primary" href="http://dev.reinitresearch.com/signin">Login</a>
+                            </form>
+                        </div>
+                    </div>
+
                     <div *ngIf="showForms" class="col-lg-8 col-md-12">
 
                         <div class="contact-info">
@@ -37,7 +48,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6" *ngIf="showHealthcareFields">
-                                        <label>Which Sector?<span style="color: red;">*</span></label>
+                                        <label>Which Sector are you working in?<span style="color: red;">*</span></label>
                                         <div class="form-group">
 
                                             <input type="radio" formControlName="sector_id" id="sector_id1" value="1"/> Private
@@ -48,7 +59,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6" *ngIf="showHealthcareFields">
-                                        <label>Which Category<span style="color: red;">*</span></label>
+                                        <label>Which Category are you working in<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <select class="custom-select" (change)="selectOther($event)" formControlName="sector_category_id">
                                                 <option value="" disabled>---Select your category---</option>
@@ -337,16 +348,7 @@
                         </div>
 
                     </div>
-                    <div *ngIf="showForms" class="col-lg-4 col-md-12">
-                        <div class="contact-form text-center">
 
-                            <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-                                <p>Have an account? click below to login</p>
-                                <hr/>
-                                <a class="btn btn-primary" href="http://dev.reinitresearch.com/signin">Login</a>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
