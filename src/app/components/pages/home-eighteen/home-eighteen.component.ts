@@ -117,11 +117,16 @@ export class HomeEighteenComponent implements OnInit {
     return this.registrationForm.get('health_care');
   }
 
+  get other() {
+    return this.registrationForm.get('other_category');
+  }
+
   countries; regions; empState; maritalState; education; filterRegions; healthCartegory
 
   urlParams: any = {};
 
   showHealthcareFields = false
+  showOtherCategoryField = false
 
   ngOnInit() {
     this.urlParams.ref = this._route.snapshot.queryParamMap.get('ref');
@@ -146,6 +151,7 @@ export class HomeEighteenComponent implements OnInit {
         health_care: ['', [Validators.required]],
         sector_id: ['', [Validators.required]],
         sector_category_id: ['', [Validators.required]],
+        other_category: [''],
         terms: ['',[Validators.requiredTrue]],
       },{validators:[MustMatch('password', 'confirm_pass'), MustMatch('email','verify_email')]});
 
@@ -165,32 +171,25 @@ export class HomeEighteenComponent implements OnInit {
         this.maritalState = data.stats[4]
         this.towns = data.stats[5]
         this.healthCartegory = data.stats[6];
-        console.log(this.regions);
-        console.log(this.towns);
     });
   }
 
   getCountryRegion(event: any) {
 
      const id = event.target.selectedIndex
-    //  console.log(id);
      this.filterRegions = _.filter(this.regions, { 'country_id': id });
-     //console.log(this.filterRegions);
      this.selectedCountry(id);
   }
 
   getRegionTown(event: any) {
 
     const id = event.target.selectedIndex
-    console.log(id)
     this.region_towns = _.filter(this.towns, { 't_region_id': id });
-    // console.log(this.region_towns);
  }
 
 
   selectedCountry(id: number) {
     const result = _.find(this.countries, {'country_id' : id});
-    //console.log(result);
     const code = result.phone_code;
     this.registrationForm.patchValue({
      country_code: code,
@@ -214,6 +213,7 @@ export class HomeEighteenComponent implements OnInit {
         });
     } else {
         this.showHealthcareFields = false
+        this.showOtherCategoryField = false,
         this.registrationForm.get('health_care').valueChanges.subscribe(health_care => {
             category.setValidators(null);
             category.updateValueAndValidity();
@@ -225,9 +225,35 @@ export class HomeEighteenComponent implements OnInit {
 
    }
 
+   selectOther(event) {
+    const other_category = this.registrationForm.controls['other_category']
+
+    const id = event.target.selectedIndex;
+
+    const result = _.find(this.healthCartegory, {'health_cate_id' : id});
+
+    const value = result.h_category_name;
+
+    if(value === 'Other'){
+        this.showOtherCategoryField = true,
+
+        this.registrationForm.get('sector_category_id').valueChanges.subscribe(s => {
+            other_category.setValidators([Validators.required]);
+            other_category.updateValueAndValidity();
+
+       });
+    } else {
+        this.showOtherCategoryField = false,
+        this.registrationForm.get('sector_category_id').valueChanges.subscribe(s => {
+            other_category.setValidators(null);
+            other_category.updateValueAndValidity();
+
+       });
+    }
+   }
+
   registerUser() {
     this.submitted = true;
-     console.log(this.registrationForm.value)
      if (this.registrationForm.invalid) {
         this.loading = false;
          return;
@@ -251,6 +277,7 @@ export class HomeEighteenComponent implements OnInit {
         const health_care = this.registrationForm.value.health_care
         const sector_id = this.registrationForm.value.sector_id
         const sector_category_id = this.registrationForm.value.sector_category_id
+        const other_category = this.registrationForm.value.other_category
         const number = country_code + phone_no
         const ref = this.urlParams.ref
 
@@ -258,7 +285,7 @@ export class HomeEighteenComponent implements OnInit {
                       country_id: country_id,region_id: region_id,phone_no: number,education_level_id: education_level_id,
                       employment_status_id: employment_status_id,marital_status_id: marital_status_id,
                       password: password, town: town, ref: ref, health_care: health_care, sector_id: sector_id,
-                      sector_category_id: sector_category_id
+                      sector_category_id: sector_category_id, other_category: other_category
                     }
 
        this.service.register(data).subscribe(
