@@ -171,19 +171,26 @@ export class HomeEighteenComponent implements OnInit {
         this.maritalState = data.stats[4]
         this.towns = data.stats[5]
         this.healthCartegory = data.stats[6];
+        console.log(this.regions)
+        console.log(this.towns)
     });
   }
 
   getCountryRegion(event: any) {
 
      const id = event.target.selectedIndex
+     console.log(id)
      this.filterRegions = _.filter(this.regions, { 'country_id': id });
      this.selectedCountry(id);
   }
 
-  getRegionTown(event: any) {
-
-    const id = event.target.selectedIndex
+  getRegionTown(value) {
+    const target = value
+    console.log(target)
+    var splitted = target.split(" ",2)
+    console.log(splitted)
+    var id = +splitted[1]
+    console.log(id)
     this.region_towns = _.filter(this.towns, { 't_region_id': id });
  }
 
