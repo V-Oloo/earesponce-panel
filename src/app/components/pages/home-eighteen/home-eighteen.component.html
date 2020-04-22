@@ -230,7 +230,7 @@
                                         <label>Phone Number<span style="color: red;">*</span></label>
                                         <div class="form-group">
 
-                                            <input formControlName="phone_no" type="number" pattern="\d*" onKeyPress="if(this.value.length==10) return false;"  class="form-control" placeholder="Enter phone number">
+                                            <input formControlName="phone_no" (paste)="$event.preventDefault()" type="number" pattern="\d*" onKeyPress="if(this.value.length==10) return false;"  class="form-control" placeholder="Enter phone number">
                                         </div>
                                         <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched) || submitted">
                                             <span style="color: red;" *ngIf="phone.errors?.required">field required</span>
