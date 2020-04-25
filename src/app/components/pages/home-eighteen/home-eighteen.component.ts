@@ -121,12 +121,22 @@ export class HomeEighteenComponent implements OnInit {
     return this.registrationForm.get('other_category');
   }
 
-  countries; regions; empState; maritalState; education; filterRegions; healthCartegory
+  get races() {
+    return this.registrationForm.get('race_id');
+  }
+
+  get oraces() {
+    return this.registrationForm.get('other_race');
+  }
+
+  countries; regions; empState; maritalState; education; filterRegions; healthCartegory; race
 
   urlParams: any = {};
 
   showHealthcareFields = false
   showOtherCategoryField = false
+  showRaceField = false
+  showOtherRacesField = false
 
   ngOnInit() {
     this.urlParams.ref = this._route.snapshot.queryParamMap.get('ref');
@@ -152,6 +162,8 @@ export class HomeEighteenComponent implements OnInit {
         sector_id: ['', [Validators.required]],
         sector_category_id: ['', [Validators.required]],
         other_category: [''],
+        race_id: [''],
+        other_race: [''],
         terms: ['',[Validators.requiredTrue]],
       },{validators:[MustMatch('password', 'confirm_pass'), MustMatch('email','verify_email')]});
 
@@ -171,26 +183,58 @@ export class HomeEighteenComponent implements OnInit {
         this.maritalState = data.stats[4]
         this.towns = data.stats[5]
         this.healthCartegory = data.stats[6];
-        console.log(this.regions)
+        this.race = data.stats[7];
+        console.log(this.race)
         console.log(this.towns)
     });
   }
 
   getCountryRegion(event: any) {
+     const race = this.registrationForm.controls['race_id']
 
-     const id = event.target.selectedIndex
-     console.log(id)
+     const value = event.target.value
+     var splitted = value.split(" ",2)
+     var id = +splitted[1]
      this.filterRegions = _.filter(this.regions, { 'country_id': id });
      this.selectedCountry(id);
+
+     if (id === 197) {
+        this.showRaceField = true
+        // this.registrationForm.get('country_id').valueChanges.subscribe(country => {
+        //     console.log(country)
+        //     race.setValidators([Validators.required]);
+        //     race.updateValueAndValidity();
+        // });
+
+    } else {
+        this.showRaceField = false
+        // this.registrationForm.get('country_id').valueChanges.subscribe(country => {
+        //     race.setValidators(null);
+        //     race.updateValueAndValidity();
+        // });
+
+    }
+
+
+
+
+  }
+
+  otherRaces(event) {
+   const value = event.target.value
+   var splitted = value.split(" ",2)
+   var id = +splitted[1]
+   if (id === 5) {
+       this.showOtherRacesField = true;
+   } else {
+    this.showOtherRacesField = false;
+   }
   }
 
   getRegionTown(value) {
     const target = value
-    console.log(target)
     var splitted = target.split(" ",2)
-    console.log(splitted)
     var id = +splitted[1]
-    console.log(id)
     this.region_towns = _.filter(this.towns, { 't_region_id': id });
  }
 
@@ -235,28 +279,37 @@ export class HomeEighteenComponent implements OnInit {
    selectOther(event) {
     const other_category = this.registrationForm.controls['other_category']
 
-    const id = event.target.selectedIndex;
+    const target = event.target.value
+    var splitted = target.split(" ",2)
+    var id = +splitted[1]
+    console.log(event.target.value)
 
-    const result = _.find(this.healthCartegory, {'health_cate_id' : id});
+     if (id === 11) {
+        this.showOtherCategoryField = true;
+     } else {
+        this.showOtherCategoryField = false;
+     }
 
-    const value = result.h_category_name;
 
-    if(value === 'Other'){
-        this.showOtherCategoryField = true,
+    //   this.registrationForm.get('sector_category_id').valueChanges.subscribe(s => {
+    //       if (s) {
+    //         if(id === 11) {
+    //             //this.showOtherCategoryField = true,
+    //           other_category.setValidators([Validators.required]);
+    //            other_category.updateValueAndValidity();
+    //           console.log("required set")
 
-        this.registrationForm.get('sector_category_id').valueChanges.subscribe(s => {
-            other_category.setValidators([Validators.required]);
-            other_category.updateValueAndValidity();
+    //         } else if(id !== 11) {
+    //             //this.showOtherCategoryField = false,
 
-       });
-    } else {
-        this.showOtherCategoryField = false,
-        this.registrationForm.get('sector_category_id').valueChanges.subscribe(s => {
-            other_category.setValidators(null);
-            other_category.updateValueAndValidity();
+    //           other_category.setValidators(null);
+    //           other_category.updateValueAndValidity();
+    //         }
 
-       });
-    }
+    //       }
+
+    //    });
+
    }
 
   registerUser() {
@@ -312,29 +365,6 @@ export class HomeEighteenComponent implements OnInit {
 
            );
       console.log(this.registrationForm.value);
-  }
-
-  loginUser() {
-    this.submitted = true;
-
-      if (this.loginForm.invalid) {
-        // this.loading = false;
-         return;
-      }
-       console.log(this.loginForm.value);
-       this.loading = true;
-      this.service.login(this.loginForm.value).subscribe(
-          res => {
-              this.loading = false
-              const url = res.redirect_to
-              window.location.href = url
-              this.lmessage = res.success,
-              console.log(res)},
-          err => {
-              this.loading = false
-              this.lerror= err.error.message,
-              console.log(err)}
-      );
   }
 
 }

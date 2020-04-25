@@ -49,4 +49,8 @@ export class HomeService {
    getHealthCare() {
     return this.http.get(this.global._BaseUri + `/healthcare_categories`).pipe(map((data: any) => data), shareReplay());
   }
+
+  getRace() {
+    return this.http.get(this.global._BaseUri + `/races`).pipe(map((data: any) => data), shareReplay());
+  }
 }
