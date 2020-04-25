@@ -339,13 +339,15 @@ export class HomeEighteenComponent implements OnInit {
         const sector_category_id = this.registrationForm.value.sector_category_id
         const other_category = this.registrationForm.value.other_category
         const number = country_code + phone_no
+        const race = this.registrationForm.value.race_id
+        const other_race = this.registrationForm.value.other_race
         const ref = this.urlParams.ref
 
         let data = {first_name: first_name,last_name: last_name,gender: gender,dob: dob,email:email,
                       country_id: country_id,region_id: region_id,phone_no: number,education_level_id: education_level_id,
                       employment_status_id: employment_status_id,marital_status_id: marital_status_id,
                       password: password, town: town, ref: ref, health_care: health_care, sector_id: sector_id,
-                      sector_category_id: sector_category_id, other_category: other_category
+                      sector_category_id: sector_category_id, other_category: other_category, race_id:race, other_race: other_race
                     }
 
        this.service.register(data).subscribe(
