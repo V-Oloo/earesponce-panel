@@ -45,13 +45,14 @@ This files table contents are outlined below>>>>>
 Default CSS
 =================================================*/
 $main-color: #23d3b6;
+$secondary-color : #e57f26;
 $white-color: #ffffff;
 $black-color: #000000;
 $paragraph-color: #000000;
-$font-family: 'Open Sans', sans-serif;
-$font-family2: 'PT Sans', sans-serif;
+$font-family: "Open Sans", sans-serif;
+$font-family2: "PT Sans", sans-serif;
 $font-size: 15px;
-$transition: .5s;
+$transition: 0.5s;
 
 body {
     padding: 0;
@@ -59,13 +60,24 @@ body {
     font: {
         size: $font-size;
         family: $font-family;
-    };
+    }
 }
 a {
     text-decoration: none !important;
     transition: $transition;
 }
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: $black-color;
     margin-bottom: 15px;
     font: {
@@ -113,27 +125,107 @@ img {
         image: url(../../assets/img/image-1.jpeg);
     }
 }
+
+/* Custom css*/
+.ml-lg-4,
+.mx-lg-4 {
+    margin-left: 1.5rem !important;
+}
+.d-sm-block {
+    display: block !important;
+}
+.mr-md-4,
+.mx-md-4 {
+    margin-right: 1.5rem !important;
+}
+.mr-lg-0,
+.mx-lg-0 {
+    margin-right: 0 !important;
+}
+
+.btnn {
+    display: inline-block;
+    font-weight: 700;
+    color: #555a64;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: .625rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 100px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+
+.btn-primaryy {
+    color: #fff;
+    background-color: $main-color;
+    border-color: $main-color;
+    border-radius: 14px;
+    box-shadow: none;
+}
+
+.btn-primaryy:hover {
+    color: #fff;
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+}
+
+.btn-primaryy.focus,
+.btn-primaryy:focus {
+    box-shadow: none, 0 0 0 0.2rem rgba(38, 170, 135, 0.5);
+}
+
+.btn-primaryy.disabled,
+.btn-primaryy:disabled {
+    color: #fff;
+    background-color: #009b72;
+    border-color: #009b72;
+}
+
+.btn-primaryy:not(:disabled):not(.disabled).active,
+.btn-primaryy:not(:disabled):not(.disabled):active,
+.show > .btn-primaryy.dropdown-toggle {
+    color: #fff;
+    background-color: #00684c;
+    border-color: #005b43;
+}
+
+.btn-primaryy:not(:disabled):not(.disabled).active:focus,
+.btn-primaryy:not(:disabled):not(.disabled):active:focus,
+.show > .btn-primaryy.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 170, 135, 0.5);
+}
+/*custom css*/
 /*btn btn-primary*/
 .btn {
     color: $white-color;
-    box-shadow: 0 8px 6px -6px rgba(50,51,51,.4);
+    box-shadow: 0 8px 6px -6px rgba(50, 51, 51, 0.4);
     border: none;
     padding: 15px 30px;
-    border-radius: 0;
+    border-radius: 0px;
     transition: $transition;
     font: {
         weight: 600;
         size: $font-size;
-    };
+    }
 }
 .btn-primary {
     color: $white-color;
-    background: $black-color;
+    background: #e57f26;
     position: relative;
     z-index: 1;
+    border-radius: 10px;
 
-    &::before, &::after {
-        content: '';
+    &::before,
+    &::after {
+        content: "";
         position: absolute;
         top: 0;
         width: 51%;
@@ -141,6 +233,7 @@ img {
         height: 100%;
         z-index: -1;
         transition: $transition;
+        border-radius: 1px;
     }
     &::before {
         left: 0;
@@ -148,38 +241,46 @@ img {
     &::after {
         right: 0;
     }
-    &:hover::before, &:hover::after, &:focus::before, &:focus::after {
+    &:hover::before,
+    &:hover::after,
+    &:focus::before,
+    &:focus::after {
         width: 0;
     }
-    &.focus, &:focus {
+    &.focus,
+    &:focus {
         box-shadow: unset;
         color: $white-color;
     }
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
+        background: #e57f26;
+        color: $white-color;
+        box-shadow: unset;
+    }
+    &:not(:disabled):not(.disabled).active:focus,
+    &:not(:disabled):not(.disabled):active:focus {
+        box-shadow: unset;
+    }
+    &:not(:disabled):not(.disabled).active,
+    &:not(:disabled):not(.disabled):active {
         background: $black-color;
         color: $white-color;
-        box-shadow: unset;
     }
-    &:not(:disabled):not(.disabled).active:focus, &:not(:disabled):not(.disabled):active:focus {
-        box-shadow: unset;
-    }
-    &:not(:disabled):not(.disabled).active, &:not(:disabled):not(.disabled):active {
-        background: $black-color;
-        color: $white-color;
-    }
-    &.disabled, &:disabled {
+    &.disabled,
+    &:disabled {
         opacity: 1;
         background: $black-color;
     }
 }
 /*form-control*/
 .form-control {
-   // height: 40px;
+    // height: 40px;
     padding: 10px;
     font-size: 14px;
     font-weight: 600;
     border: 1px solid #eeeeee;
-    border-radius: 0;
+    border-radius: 7px;
     transition: $transition;
 
     &:focus {
@@ -195,17 +296,17 @@ img {
     margin: {
         bottom: 60px;
         top: -5px;
-    };
+    }
     span {
         text-transform: uppercase;
         display: block;
-        letter-spacing: .5px;
+        letter-spacing: 0.5px;
         margin-bottom: 12px;
         color: $main-color;
         font: {
             size: 14px;
             weight: 700;
-        };
+        }
     }
     h2 {
         margin-bottom: 0;
@@ -215,7 +316,11 @@ img {
         }
         b {
             font-weight: 600 !important;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, $main-color 80%);
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 80%,
+                $main-color 80%
+            );
             background-size: 90px 1.1em !important;
         }
     }
@@ -223,6 +328,112 @@ img {
         max-width: 520px;
         margin: 15px auto 0;
     }
+}
+
+/*================================================
+Why We Different CSS
+=================================================*/
+.why-we-different {
+    position: relative;
+    z-index: 1;
+}
+
+.why-we-different.bg-image {
+    background-image: url(../../assets/img/bg.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tab .tabs {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 50px;
+    text-align: center;
+}
+
+.tab .tabs li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.tab .tabs li a {
+    color: #000000;
+    padding: 15px 30px;
+    background: transparent;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    display: block;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.tab .tabs li a:hover,
+.tab .tabs li a:focus {
+    background: $main-color;
+    color: #ffffff;
+    border-color: $main-color;
+}
+
+.tab .tabs li.current a {
+    background: $main-color;
+    color: #ffffff;
+    border-color: $main-color;
+}
+
+.tab .tabs_item {
+    display: none;
+}
+
+.tab .tabs_item:first-child {
+    display: block;
+}
+
+.tab .tabs_item .tabs_item_content h3 {
+    margin-bottom: 12px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.tab .tabs_item .tabs_item_content p {
+    margin-bottom: 0;
+}
+
+.tab .tabs_item .tabs_item_content ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.tab .tabs_item .tabs_item_content ul li {
+    color: #828893;
+    margin-bottom: 10px;
+    float: left;
+    width: 45%;
+    padding-left: 17px;
+    font-weight: 600;
+    position: relative;
+}
+
+.tab .tabs_item .tabs_item_content ul li:last-child {
+    margin-bottom: 0;
+}
+
+.tab .tabs_item .tabs_item_content ul li::before {
+    content: "";
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 0;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff2c6f;
+    -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
 
 /*================================================
@@ -261,8 +472,8 @@ Preloader CSS
             bottom: 5px;
             border-radius: 50%;
             border: 7px solid transparent;
-            border-top-color: $white-color;
-            animation: spin-reverse .6s linear infinite;
+            border-top-color: #e57f26;
+            animation: spin-reverse 0.6s linear infinite;
         }
         &::after {
             content: "";
@@ -294,7 +505,211 @@ Preloader CSS
         transform: rotate(-360deg);
     }
 }
+/*================================================
+Features CSS
+=================================================*/
+.features-area {
+    position: relative;
+    padding-bottom: 70px;
+    z-index: 1;
+}
 
+.features-area.bg-image {
+    background-image: url(../../assets/img/why-join-us-bg.png);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+}
+
+.single-features {
+    background-color: #ffffff;
+    -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    padding: 35px 25px;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: 0.5s;
+    border-radius: 15px;
+}
+
+.single-features .icon {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: #e57f26;
+    font-size: 45px;
+}
+
+.single-features h3 {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 12px;
+}
+
+.single-features p {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.single-features:hover,
+.single-features:focus {
+    background-color: #e57f26;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+}
+
+.single-features:hover .icon,
+.single-features:focus .icon {
+    color: #ffffff;
+}
+
+.single-features:hover h3,
+.single-features:focus h3 {
+    color: #ffffff;
+}
+
+.single-features:hover p,
+.single-features:focus p {
+    color: #ffffff;
+    opacity: 0.88;
+}
+
+.single-features.active {
+    background-color: #23d3b6;
+}
+
+.single-features.active .icon {
+    color: #ffffff;
+}
+
+.single-features.active h3 {
+    color: #ffffff;
+}
+
+.single-features.active p {
+    color: #ffffff;
+    opacity: 0.88;
+}
+/*================================================
+Services CSS
+=================================================*/
+.services-area {
+    position: relative;
+    padding-bottom: 70px;
+    z-index: 1;
+}
+
+.single-services {
+    margin-bottom: 30px;
+    border-radius: 15px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    background: #ffffff;
+    -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+}
+
+.single-services .services-image {
+    overflow: hidden;
+    position: relative;
+}
+
+.single-services .services-image::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.single-services .services-image img {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.single-services .services-image .icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 3;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    -webkit-transform: translateY(-40%);
+    transform: translateY(-40%);
+    width: 60px;
+    opacity: 0;
+    visibility: hidden;
+    height: 60px;
+    line-height: 58px;
+    background: #ff2c6f;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 22px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.single-services .services-content {
+    padding: 30px 20px;
+}
+
+.single-services .services-content h3 {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.single-services .services-content p {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.single-services:hover,
+.single-services:focus {
+    background: #ff2c6f;
+}
+
+.single-services:hover .services-image img,
+.single-services:focus .services-image img {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+.single-services:hover .services-image::before,
+.single-services:focus .services-image::before {
+    opacity: 0.7;
+    visibility: visible;
+}
+
+.single-services:hover .services-image .icon,
+.single-services:focus .services-image .icon {
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    opacity: 1;
+    visibility: visible;
+}
+
+.single-services:hover .services-content h3,
+.single-services:hover .services-content p,
+.single-services:focus .services-content h3,
+.single-services:focus .services-content p {
+    color: #ffffff;
+}
 /*================================================
 Navbar CSS
 =================================================*/
@@ -345,7 +760,7 @@ Navbar CSS
                     weight: 600;
                 }
                 &::before {
-                    content: '';
+                    content: "";
                     position: absolute;
                     width: 10px;
                     height: 10px;
@@ -359,7 +774,9 @@ Navbar CSS
                     bottom: 0;
                     transition: $transition;
                 }
-                &:hover, &:focus, &.active {
+                &:hover,
+                &:focus,
+                &.active {
                     color: $main-color;
 
                     &::before {
@@ -407,7 +824,9 @@ Navbar CSS
                     &::before {
                         display: none;
                     }
-                    &:hover, &:focus, &.active {
+                    &:hover,
+                    &:focus,
+                    &.active {
                         color: $main-color;
 
                         &::before {
@@ -432,19 +851,18 @@ Navbar CSS
 }
 // Mobile and iPad Navbar
 @media only screen and (max-width: 991px) {
-
     .navbar {
         padding: {
             top: 15px;
             bottom: 25px;
-        };
+        }
     }
     .navbar-expand-lg {
         > .container {
             padding: {
                 left: 15px;
                 right: 15px;
-            };
+            }
         }
     }
     .navbar-light {
@@ -467,12 +885,13 @@ Navbar CSS
                     right: 0;
                     top: 10px;
                     bottom: 10px;
-                };
+                }
                 .nav-link {
                     color: $black-color;
                     display: block;
 
-                    &.active, &:hover {
+                    &.active,
+                    &:hover {
                         color: $main-color;
                     }
                     &.active {
@@ -484,7 +903,7 @@ Navbar CSS
                         margin: {
                             bottom: -5px;
                             right: 0;
-                        };
+                        }
                     }
                 }
             }
@@ -493,7 +912,7 @@ Navbar CSS
             padding: {
                 top: 15px;
                 bottom: 15px;
-            };
+            }
             .navbar-toggler {
                 border-color: $black-color;
 
@@ -518,7 +937,6 @@ Navbar CSS
             }
         }
     }
-
 }
 
 /*================================================
@@ -532,16 +950,16 @@ Main Banner CSS
         position: center center;
         size: cover;
         repeat: no-repeat;
-    };
+    }
     &::before {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
         z-index: -1;
-        background: rgba(13, 15, 20, .55);
+        background: rgba(13, 15, 20, 0.55);
     }
 }
 .video-banner {
@@ -572,10 +990,9 @@ Main Banner CSS
 
 .item-bg2 {
     background: {
-        image: url(../../assets/img/bg1.jpg);
+        image: url(../../assets/img/landing-background.png);
     }
 }
-
 
 .main-banner-content {
     max-width: 700px;
@@ -590,7 +1007,7 @@ Main Banner CSS
             margin: {
                 left: auto;
                 right: auto;
-            };
+            }
         }
     }
     span {
@@ -598,11 +1015,11 @@ Main Banner CSS
         text-transform: uppercase;
         display: block;
         letter-spacing: 2px;
-        opacity: .88;
+        opacity: 0.88;
         font: {
             weight: 500;
             size: 16px;
-        };
+        }
     }
     h1 {
         color: $white-color;
@@ -611,23 +1028,31 @@ Main Banner CSS
             size: 55px;
             family: $font-family;
             weight: 300;
-        };
+        }
         b {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, $main-color 80%);
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 80%,
+                $main-color 80%
+            );
             background-size: 100px 1.2em !important;
             font: {
                 weight: 700;
                 family: $font-family2;
-            };
+            }
         }
         .typewrite {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, $main-color 80%);
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 80%,
+                $main-color 80%
+            );
             background-size: 100px 1em !important;
             display: inline-block;
             font: {
                 weight: 700;
                 family: $font-family2;
-            };
+            }
             span {
                 text-transform: capitalize;
                 margin: 0;
@@ -636,7 +1061,7 @@ Main Banner CSS
                 letter-spacing: 0;
                 font: {
                     size: 55px;
-                };
+                }
             }
         }
     }
@@ -644,7 +1069,7 @@ Main Banner CSS
         color: $white-color;
         margin-bottom: 30px;
         max-width: 580px;
-        opacity: .88;
+        opacity: 0.88;
         font-size: 16.5px;
     }
     .btn-box {
@@ -655,7 +1080,7 @@ Main Banner CSS
             font: {
                 weight: 700;
                 size: 14px;
-            };
+            }
         }
         .video-btn {
             color: #dddddd;
@@ -678,7 +1103,7 @@ Main Banner CSS
 
                 &::after {
                     z-index: -1;
-                    content: '';
+                    content: "";
                     position: absolute;
                     left: 0;
                     top: 0;
@@ -687,10 +1112,11 @@ Main Banner CSS
                     animation: ripple 1.6s ease-out infinite;
                     opacity: 0;
                     border-radius: 50%;
-                    background: rgba(255, 255, 255, .5);
+                    background: rgba(255, 255, 255, 0.5);
                 }
             }
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 color: $white-color;
 
                 i {
@@ -718,12 +1144,12 @@ Main Banner CSS
     position: relative;
 
     &::before {
-        content: '';
+        content: "";
         position: absolute;
         z-index: -1;
         background: $white-color;
         width: 96%;
-        opacity: .62;
+        opacity: 0.62;
         height: 50%;
         bottom: -10px;
         left: 0;
@@ -755,18 +1181,25 @@ Main Banner CSS
     position: relative;
     text-align: center;
     border: 5px solid $white-color;
-    box-shadow: 0px 10px 30px rgba(0,0,0,.05);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
     overflow: hidden;
 
     &::before {
-        background: linear-gradient(to bottom, #0975bc, #0d5b93, #0d426d, #092b48, #041527);
+        background: linear-gradient(
+            to bottom,
+            #0975bc,
+            #0d5b93,
+            #0d426d,
+            #092b48,
+            #041527
+        );
         width: 100%;
         height: 100%;
         left: 0;
         top: 0;
         position: absolute;
-        content: '';
-        opacity: .70;
+        content: "";
+        opacity: 0.7;
         z-index: 1;
     }
     img {
@@ -791,7 +1224,7 @@ Main Banner CSS
 
         &::before {
             z-index: -1;
-            content: '';
+            content: "";
             position: absolute;
             left: 0;
             top: 0;
@@ -800,14 +1233,16 @@ Main Banner CSS
             animation: ripple 1.6s ease-out infinite;
             opacity: 0;
             border-radius: 50%;
-            background: rgba(148, 107, 255, .5);
+            background: rgba(148, 107, 255, 0.5);
         }
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             color: $main-color;
             background-color: $white-color;
         }
     }
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         img {
             transform: scale(1.4);
         }
@@ -858,8 +1293,15 @@ Main Banner CSS
 .gradient-banner {
     &.main-banner {
         &::before {
-            background: linear-gradient(to left bottom, #292e49, #303d55, #394b61, #455a6b, #536976);
-            opacity: .90;
+            background: linear-gradient(
+                to left bottom,
+                #292e49,
+                #303d55,
+                #394b61,
+                #455a6b,
+                #536976
+            );
+            opacity: 0.9;
         }
     }
 }
@@ -867,9 +1309,9 @@ Main Banner CSS
     &.owl-theme {
         .owl-nav {
             margin-top: 0;
-            line-height: .01;
+            line-height: 0.01;
 
-            [class*=owl-] {
+            [class*="owl-"] {
                 position: absolute;
                 left: 50px;
                 top: 50%;
@@ -884,7 +1326,7 @@ Main Banner CSS
                 border-radius: 0;
                 color: $white-color;
                 transition: $transition;
-                opacity: .7;
+                opacity: 0.7;
                 margin-top: -50px;
                 font: {
                     size: 28px;
@@ -902,9 +1344,10 @@ Main Banner CSS
                 }
             }
         }
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             .owl-nav {
-                [class*=owl-] {
+                [class*="owl-"] {
                     opacity: 1;
                     left: 10px;
                     visibility: visible;
@@ -919,7 +1362,8 @@ Main Banner CSS
     }
 }
 @keyframes ripple {
-    0%, 35% {
+    0%,
+    35% {
         transform: scale(0);
         opacity: 1;
     }
@@ -966,28 +1410,28 @@ Main Banner CSS
     bottom: 70px;
     z-index: -1;
     animation: movebounce 5s linear infinite;
-    opacity: .6;
+    opacity: 0.6;
 }
 .shape2 {
     position: absolute;
     right: 70px;
     bottom: 70px;
     z-index: -1;
-    opacity: .6;
+    opacity: 0.6;
 }
 .shape3 {
     position: absolute;
     left: 70px;
     top: 70px;
     z-index: -1;
-    opacity: .6;
+    opacity: 0.6;
 }
 .shape4 {
     position: absolute;
     right: 100px;
     top: 100px;
     z-index: -1;
-    opacity: .6;
+    opacity: 0.6;
     animation: movebounce 5s linear infinite;
 }
 .rotateme {
@@ -1064,7 +1508,7 @@ Who We Are CSS
                 position: relative;
 
                 &::before {
-                    content: '';
+                    content: "";
                     top: 50%;
                     transform: translateY(-50%);
                     left: 0;
@@ -1085,11 +1529,11 @@ FAQ CSS
     width: 100%;
     height: 100%;
     background: {
-        image: url(../../assets/img/faq-bg.png);
+        // image: url(../../assets/img/Account-Registration.png);
         position: center center;
         size: cover;
         repeat: no-repeat;
-    };
+    }
     img {
         display: none;
     }
@@ -1123,7 +1567,7 @@ FAQ CSS
                     size: $font-size;
                     family: $font-family;
                     weight: 600;
-                };
+                }
                 &:hover {
                     background: $main-color;
                 }
@@ -1162,7 +1606,7 @@ FAQ CSS
 }
 
 .tab-slider-nav {
-	text-align: center;
+    text-align: center;
     margin-bottom: 40px;
 
     .tab-slider-tabs {
@@ -1184,8 +1628,10 @@ FAQ CSS
             font: {
                 weight: 600;
                 size: 14px;
-            };
-            &.active, &:hover, &:focus {
+            }
+            &.active,
+            &:hover,
+            &:focus {
                 color: $white-color;
                 background: $main-color;
             }
@@ -1205,18 +1651,18 @@ Contact CSS
             position: center center;
             size: cover;
             repeat: no-repeat;
-        };
+        }
     }
 }
 .contact-info {
-	box-shadow: 0 0 30px 0 rgba(67, 67, 67, 0.15);
-	background: $white-color;
+    box-shadow: 0 0 30px 0 rgba(67, 67, 67, 0.15);
+    background: $white-color;
     padding: 30px;
     height: 100%;
     border: {
         top: 3px solid $main-color;
         bottom: 3px solid $main-color;
-    };
+    }
     ul {
         padding: 0;
         margin: 0;
@@ -1239,13 +1685,14 @@ Contact CSS
                 font: {
                     weight: 600;
                     size: 20px;
-                };
+                }
             }
             a {
                 color: $paragraph-color;
                 display: inline-block;
 
-                &:hover, &:focus {
+                &:hover,
+                &:focus {
                     color: $main-color;
                 }
             }
@@ -1264,7 +1711,8 @@ Contact CSS
                 border-radius: 50%;
                 transition: $transition;
             }
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 i {
                     background-color: $main-color;
                     color: $white-color;
@@ -1280,10 +1728,12 @@ Contact CSS
     border: {
         top: 3px solid $main-color;
         bottom: 3px solid $main-color;
-    };
+        radius: 10px;
+    }
     .btn {
         margin-top: 12px;
         margin-bottom: 12px;
+        background: #e57f26;
     }
 }
 
@@ -1298,11 +1748,11 @@ Page Title CSS
         position: center center;
         size: cover;
         repeat: no-repeat;
-    };
+    }
     padding: {
         top: 200px;
         bottom: 120px;
-    };
+    }
     &::before {
         position: absolute;
         left: 0;
@@ -1311,7 +1761,7 @@ Page Title CSS
         width: 100%;
         height: 100%;
         z-index: -1;
-        content: '';
+        content: "";
     }
     h2 {
         margin-bottom: 0;
@@ -1319,7 +1769,7 @@ Page Title CSS
         font: {
             size: 45px;
             weight: 600;
-        };
+        }
     }
 }
 
@@ -1350,8 +1800,10 @@ Pagination CSS
                 font: {
                     size: 17px;
                     weight: 600;
-                };
-                &.active, &:hover, &:focus {
+                }
+                &.active,
+                &:hover,
+                &:focus {
                     background: $main-color;
                     color: $white-color;
                     box-shadow: unset;
@@ -1377,9 +1829,9 @@ Sidebar CSS
             font: {
                 size: 22px;
                 weight: 600;
-            };
+            }
             &::before {
-                content: '';
+                content: "";
                 position: absolute;
                 right: 0;
                 top: 2px;
@@ -1390,7 +1842,8 @@ Sidebar CSS
                 transition: $transition;
             }
         }
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             .widget-title {
                 &::before {
                     transform: rotate(180deg);
@@ -1399,7 +1852,7 @@ Sidebar CSS
         }
         &.widget_search {
             background: $white-color;
-            box-shadow: 0px 0px 29px 0px rgba(102,102,102,0.1);
+            box-shadow: 0px 0px 29px 0px rgba(102, 102, 102, 0.1);
             padding: 15px;
 
             form {
@@ -1420,7 +1873,8 @@ Sidebar CSS
                     color: $main-color;
                     transition: $transition;
 
-                    &:hover, &:focus {
+                    &:hover,
+                    &:focus {
                         color: $black-color;
                     }
                 }
@@ -1439,9 +1893,9 @@ Sidebar CSS
                         top: 10px;
                         bottom: 10px;
                         left: 18px;
-                    };
+                    }
                     &::before {
-                        content: '';
+                        content: "";
                         position: absolute;
                         left: 0;
                         top: 50%;
@@ -1497,12 +1951,13 @@ Sidebar CSS
                         font: {
                             size: 16px;
                             weight: 600;
-                        };
+                        }
                         a {
                             color: $black-color;
                             display: inline-block;
 
-                            &:hover, &:focus {
+                            &:hover,
+                            &:focus {
                                 color: $main-color;
                             }
                         }
@@ -1528,7 +1983,7 @@ Sidebar CSS
                     font: {
                         size: 14px !important;
                         weight: 600;
-                    };
+                    }
                     &:hover {
                         background: $main-color;
                         color: $white-color;
@@ -1550,9 +2005,9 @@ Sidebar CSS
                         top: 10px;
                         bottom: 10px;
                         left: 18px;
-                    };
+                    }
                     &::before {
-                        content: '';
+                        content: "";
                         position: absolute;
                         left: 0;
                         top: 50%;
@@ -1620,7 +2075,8 @@ Sidebar CSS
             font-weight: 600;
             transition: $transition;
 
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 background-color: $black-color;
                 color: $white-color;
             }
@@ -1636,7 +2092,7 @@ Footer CSS
     padding: {
         top: 30px;
         bottom: 30px;
-    };
+    }
     p {
         color: $white-color;
         font: {
@@ -1651,7 +2107,8 @@ Footer CSS
             color: $white-color;
             font-weight: 600;
 
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 color: $main-color;
             }
         }
@@ -1678,7 +2135,8 @@ Footer CSS
                 background: $white-color;
                 font-size: 14px;
 
-                &:hover, &:focus {
+                &:hover,
+                &:focus {
                     transform: translateY(-5px);
                     background-color: $main-color;
                     color: $white-color;
@@ -1692,20 +2150,20 @@ Footer CSS
 Go Top CSS
 =================================================*/
 .go-top {
-	position: fixed;
-	cursor: pointer;
-	bottom: 15px;
-	right: 15px;
-	font-size: 25px;
-	color: $white-color;
-	background-color: $black-color;
-	z-index: 4;
-	display: none;
-	width: 43px;
-	text-align: center;
-	height: 45px;
-	line-height: 43px;
-	border-radius: 5px 5px 0 0;
+    position: fixed;
+    cursor: pointer;
+    bottom: 15px;
+    right: 15px;
+    font-size: 25px;
+    color: $white-color;
+    background-color: $black-color;
+    z-index: 4;
+    display: none;
+    width: 43px;
+    text-align: center;
+    height: 45px;
+    line-height: 43px;
+    border-radius: 5px 5px 0 0;
     transition: $transition;
 
     &:hover {

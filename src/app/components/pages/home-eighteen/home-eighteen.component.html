@@ -8,19 +8,16 @@
                         <div class="contact-form text-center">
 
                             <form [formGroup]="loginForm">
-                                <p>Have an account? click below to login</p>
+                                <p>Have an account? Click the button to login</p>
                                 <hr/>
-                                <a class="btn btn-primary" href="http://dev.reinitresearch.com/signin">Login</a>
+                                <a class="btnn btn-primaryy mr-lg-0 d-none d-sm-block" href="http://dev.reinitresearch.com/signin">Login to your account</a>
                             </form>
                         </div>
                     </div>
 
-
                     <div *ngIf="showForms" class="col-lg-8 col-md-12">
-
                         <div class="contact-form">
                             <h3>Join Our Panel</h3><hr/>
-
                             <form [formGroup]="registrationForm" (ngSubmit)="registerUser()">
                                 <div *ngIf="message" class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{message}}
@@ -35,65 +32,13 @@
                                     </button>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Are you a health care worker?<span style="color: red;">*</span></label>
-                                        <div class="form-group">
-
-                                            <input type="radio" (click)="setradio('1')" formControlName="health_care" id="userCategory2" value="1"/> Yes
-                                            <input type="radio" (click)="setradio('2')" formControlName="health_care" id="userCategory1" value="2"/> No
-                                            <div class="form-control-feedback" *ngIf="registrationForm.controls['health_care'].errors && (registrationForm.controls['health_care'].dirty || registrationForm.controls['health_care'].touched) || submitted" >
-                                                <span style="color: red;" *ngIf="registrationForm.controls['health_care'].errors && registrationForm.controls['health_care'].errors.required">required field</span>
-                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6" *ngIf="showHealthcareFields">
-                                        <label>Which Sector are you working in?<span style="color: red;">*</span></label>
-                                        <div class="form-group">
-
-                                            <input type="radio" formControlName="sector_id" id="sector_id1" value="1"/> Private
-                                            <input type="radio" formControlName="sector_id" id="sector_id2" value="2"/> Public
-                                            <div class="form-control-feedback" *ngIf="registrationForm.controls['sector_id'].errors && (registrationForm.controls['sector_id'].dirty || registrationForm.controls['sector_id'].touched) || submitted" >
-                                                <span style="color: red;" *ngIf="registrationForm.controls['sector_id'].errors && registrationForm.controls['sector_id'].errors.required">select sector</span>
-                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6" *ngIf="showHealthcareFields">
-                                        <label>Select your category<span style="color: red;">*</span></label>
-                                        <div class="form-group">
-                                            <select class="custom-select" (change)="selectOther($event)" formControlName="sector_category_id">
-                                                <option value="" disabled>---Select your category---</option>
-                                                <option *ngFor="let item of healthCartegory"  [ngValue]="item.health_cate_id">{{item.h_category_name}}</option>
-
-                                             </select>
-                                             <div class="form-control-feedback" *ngIf="category.errors && (category.dirty || category.touched) || submitted">
-                                                <span style="color: red;" *ngIf="category.errors?.required">field required</span>
-
-                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12" *ngIf="showOtherCategoryField">
-                                        <div class="form-group">
-                                            <label>Please Specify<span style="color: red;">*</span></label>
-                                            <input formControlName="other_category" type="text" class="form-control" placeholder="Enter your category">
-                                            <div class="form-control-feedback"
-                                               *ngIf="other.errors && (other.dirty || other.touched) || submitted">
-                                               <span style="color: red;" *ngIf="other.errors?.required">field required</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>First Name<span style="color: red;">*</span></label>
                                             <input formControlName="first_name" type="text" class="form-control" placeholder="Enter first name">
                                             <div class="form-control-feedback"
                                                *ngIf="fname.errors && (fname.dirty || fname.touched) || submitted">
-                                               <span style="color: red;" *ngIf="fname.errors?.required">field required</span>
+                                               <span style="color: red;" *ngIf="fname.errors?.required">Field required</span>
                                                <span style="color: red;" *ngIf="fname.errors?.pattern">numerics and symbols not allowed</span>
                                             </div>
                                         </div>
@@ -104,7 +49,7 @@
                                             <input formControlName="last_name" type="text" class="form-control" placeholder="Enter last name">
                                             <div class="form-control-feedback"
                                                *ngIf="lname.errors && (lname.dirty || lname.touched) || submitted">
-                                               <span style="color: red;" *ngIf="lname.errors?.required">field required</span>
+                                               <span style="color: red;" *ngIf="lname.errors?.required">Field required</span>
                                                <span style="color: red;" *ngIf="lname.errors?.pattern">numerics and symbols not allowed</span>
                                             </div>
                                         </div>
@@ -117,12 +62,12 @@
                                         <div class="form-group">
                                             <label>Gender<span style="color: red;">*</span></label>
                                             <select class="custom-select" formControlName="gender">
-                                                <option value="" disabled>---Select Gender---</option>
+                                                <option value="" disgbled>Select gender</option>
                                                 <option>Male</option>
                                                 <option>Female</option>
                                              </select>
                                             <div class="form-control-feedback" *ngIf="gender.errors && (gender.dirty || gender.touched) || submitted">
-                                               <span style="color: red;" *ngIf="gender.errors?.required">field required</span>
+                                               <span style="color: red;" *ngIf="gender.errors?.required">Field required</span>
                                             </div>
                                         </div>
                                     </div>
@@ -130,13 +75,13 @@
                                         <div class="form-group">
                                             <label>Date Of Birth<span style="color: red;">*</span></label>
                                             <input type="text"
-                                                placeholder="date of birth"
+                                                placeholder="Date of birth"
                                                 formControlName="dob"
                                                 class="form-control"
                                                 [maxDate]="today"
                                                 bsDatepicker>
                                                 <div class="form-control-feedback" *ngIf="dob.errors && (dob.dirty || dob.touched) || submitted">
-                                                    <span style="color: red;" *ngIf="dob.errors?.required">field required</span>
+                                                    <span style="color: red;" *ngIf="dob.errors?.required">Field required</span>
                                                  </div>
                                         </div>
                                     </div>
@@ -146,26 +91,25 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Email<span style="color: red;">*</span></label>
+                                            <label>Email Address<span style="color: red;">*</span></label>
                                             <input formControlName="email" type="email" class="form-control" placeholder="Enter email address">
                                             <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched) || submitted">
-                                                <span style="color: red;" *ngIf="email.errors?.required">field required</span>
-                                                <span style="color: red;" *ngIf="email.errors?.email">Invalid Email</span>
+                                                <span style="color: red;" *ngIf="email.errors?.required">Field required</span>
+                                                <span style="color: red;" *ngIf="email.errors?.email">Invalid email</span>
                                              </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Verify Email<span style="color: red;">*</span></label>
-                                            <input (paste)="$event.preventDefault()" formControlName="verify_email" type="email" class="form-control" placeholder="verify email">
+                                            <input (paste)="$event.preventDefault()" formControlName="verify_email" type="email" class="form-control" placeholder="Re-enter email">
 
                                             <div class="form-control-feedback" *ngIf="vemail.errors && (vemail.dirty || vemail.touched) || submitted">
-                                                <span style="color: red;" *ngIf="vemail.errors?.required">field required</span>
-                                                <span style="color: red;" *ngIf="vemail.errors?.mustMatch">email fields do not match</span>
+                                                <span style="color: red;" *ngIf="vemail.errors?.required">Field required</span>
+                                                <span style="color: red;" *ngIf="vemail.errors?.mustMatch">Email fields do not match</span>
                                              </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="row">
@@ -173,11 +117,11 @@
                                         <label>Country<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <select class="custom-select" (change)="getCountryRegion($event)" formControlName="country_id">
-                                                <option value="" disabled>---Select Country---</option>
+                                                <option value="" disgbled>Select country</option>
                                                 <option *ngFor="let city of countries" [ngValue]="city.country_id" >{{city.country_name}}</option>
                                              </select>
                                              <div class="form-control-feedback" *ngIf="cid.errors && (cid.dirty || cid.touched) || submitted">
-                                                <span style="color: red;" *ngIf="cid.errors?.required">field required</span>
+                                                <span style="color: red;" *ngIf="cid.errors?.required">Field required</span>
 
                                              </div>
                                         </div>
@@ -186,11 +130,8 @@
                                         <label>Country Code<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <input formControlName="country_code" type="text" class="form-control">
-
                                         </div>
                                     </div>
-
-
                                 </div>
 
                                 <div class="row">
@@ -198,12 +139,11 @@
                                         <label>Select Race<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <select class="custom-select" (change)="otherRaces($event)" formControlName="race_id">
-                                                <option value="" disabled>---Select Race---</option>
+                                                <option value="" disgbled>Select race</option>
                                                 <option *ngFor="let item of race" [ngValue]="item.r_race_id" >{{item.race_name}}</option>
                                              </select>
                                              <div class="form-control-feedback" *ngIf="races.errors && (races.dirty || races.touched) || submitted">
-                                                <span style="color: red;" *ngIf="races.errors?.required">field required</span>
-
+                                                <span style="color: red;" *ngIf="races.errors?.required">Field required</span>
                                              </div>
                                         </div>
                                     </div>
@@ -216,7 +156,7 @@
                                             <input formControlName="other_race" type="text" class="form-control" placeholder="Please Specify Race">
                                             <div class="form-control-feedback"
                                                *ngIf="other.errors && (oraces.dirty || oraces.touched) || submitted">
-                                               <span style="color: red;" *ngIf="oraces.errors?.required">field required</span>
+                                               <span style="color: red;" *ngIf="oraces.errors?.required">Field required</span>
                                             </div>
                                         </div>
                                     </div>
@@ -227,13 +167,12 @@
                                         <label>Region/County<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <select class="custom-select" #myselect (change)="getRegionTown(myselect.value)" formControlName="region_id">
-                                                <option value="" disabled>---Select Region/county---</option>
+                                                <option value="" disgbled>Select region/county</option>
                                                 <option *ngFor="let region of filterRegions" [ngValue]="region.region_id">{{region.region_name}}</option>
 
                                              </select>
                                              <div class="form-control-feedback" *ngIf="rid.errors && (rid.dirty || rid.touched) || submitted">
-                                                <span style="color: red;" *ngIf="rid.errors?.required">field required</span>
-
+                                                <span style="color: red;" *ngIf="rid.errors?.required">Field required</span>
                                              </div>
                                         </div>
                                     </div>
@@ -241,61 +180,49 @@
                                         <label>Town<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <select class="custom-select" formControlName="town">
-                                                <option value="" disabled>---Select Town---</option>
+                                                <option value="" disgbled>Select Town</option>
                                                 <option *ngFor="let town of region_towns" [ngValue]="town.t_town_id">{{town.town_name}}</option>
-
                                              </select>
                                         </div>
                                         <div class="form-control-feedback" *ngIf="town.errors && (town.dirty || town.touched) || submitted">
-                                            <span style="color: red;" *ngIf="town.errors?.required">field required</span>
-
+                                            <span style="color: red;" *ngIf="town.errors?.required">Field required</span>
                                          </div>
                                     </div>
-
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Phone Number<span style="color: red;">*</span></label>
                                         <div class="form-group">
-
                                             <input formControlName="phone_no" (paste)="$event.preventDefault()" type="number" pattern="\d*" onKeyPress="if(this.value.length==10) return false;"  class="form-control" placeholder="Enter phone number">
                                         </div>
                                         <div class="form-control-feedback" *ngIf="phone.errors && (phone.dirty || phone.touched) || submitted">
-                                            <span style="color: red;" *ngIf="phone.errors?.required">field required</span>
-
+                                            <span style="color: red;" *ngIf="phone.errors?.required">Field required</span>
                                          </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Education Level<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <select class="custom-select" formControlName="education_level_id">
-                                                <option value="" disabled>---Select Level---</option>
+                                                <option value="" disgbled>Select education level</option>
                                                 <option *ngFor="let item of education" [ngValue]="item.education_levels_id">{{item.education_level}}</option>
-
                                              </select>
                                              <div class="form-control-feedback" *ngIf="edl.errors && (edl.dirty || edl.touched) || submitted">
-                                                <span style="color: red;" *ngIf="edl.errors?.required">field required</span>
-
+                                                <span style="color: red;" *ngIf="edl.errors?.required">Field required</span>
                                              </div>
                                         </div>
                                     </div>
-
-
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Employment Status<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <select class="custom-select" formControlName="employment_status_id">
-                                                <option value="" disabled>---Select Employment status---</option>
+                                                <option value="" disgbled>Select employment status</option>
                                                 <option *ngFor="let item of empState" [ngValue]="item.employment_status_id">{{item.employment_status}}</option>
-
                                              </select>
                                              <div class="form-control-feedback" *ngIf="esi.errors && (esi.dirty || esi.touched) || submitted">
-                                                <span style="color: red;" *ngIf="esi.errors?.required">field required</span>
-
+                                                <span style="color: red;" *ngIf="esi.errors?.required">Field required</span>
                                              </div>
                                         </div>
                                     </div>
@@ -304,32 +231,77 @@
                                         <label>Marital Status<span style="color: red;">*</span></label>
                                         <div class="form-group">
                                             <select class="custom-select" formControlName="marital_status_id">
-                                                <option value="" disabled>---Select Marital Status---</option>
+                                                <option value="" disgbled>Select marital status</option>
                                                 <option *ngFor="let item of maritalState" [ngValue]="item.marital_status_id">{{item.marital_status}}</option>
-
                                              </select>
                                              <div class="form-control-feedback" *ngIf="msi.errors && (msi.dirty || msi.touched) || submitted">
-                                                <span style="color: red;" *ngIf="msi.errors?.required">field required</span>
-
+                                                <span style="color: red;" *ngIf="msi.errors?.required">Field required</span>
                                              </div>
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
-
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Are you a health care worker?<span style="color: red;">*</span></label>
+                                        <div class="form-group">
+                                            <input type="radio" (click)="setradio('1')" formControlName="health_care" id="userCategory2" value="1" />
+                                            Yes
+                                            <input type="radio" (click)="setradio('2')" formControlName="health_care" id="userCategory1" value="2" /> No
+                                            <div class="form-control-feedback"
+                                                *ngIf="registrationForm.controls['health_care'].errors && (registrationForm.controls['health_care'].dirty || registrationForm.controls['health_care'].touched) || submitted">
+                                                <span style="color: red;"
+                                                    *ngIf="registrationForm.controls['health_care'].errors && registrationForm.controls['health_care'].errors.required">required
+                                                    field</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="showHealthcareFields">
+                                        <label>Which sector are you working in?<span style="color: red;">*</span></label>
+                                        <div class="form-group">
 
+                                            <input type="radio" formControlName="sector_id" id="sector_id1" value="1" /> Private
+                                            <input type="radio" formControlName="sector_id" id="sector_id2" value="2" /> Public
+                                            <div class="form-control-feedback"
+                                                *ngIf="registrationForm.controls['sector_id'].errors && (registrationForm.controls['sector_id'].dirty || registrationForm.controls['sector_id'].touched) || submitted">
+                                                <span style="color: red;"
+                                                    *ngIf="registrationForm.controls['sector_id'].errors && registrationForm.controls['sector_id'].errors.required">select
+                                                    sector</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" *ngIf="showHealthcareFields">
+                                        <label>Select your category<span style="color: red;">*</span></label>
+                                        <div class="form-group">
+                                            <select class="custom-select" (change)="selectOther($event)" formControlName="sector_category_id">
+                                                <option value="" disabled>Select your category</option>
+                                                <option *ngFor="let item of healthCartegory" [ngValue]="item.health_cate_id">{{item.h_category_name}}
+                                                </option>
+                                            </select>
+                                            <div class="form-control-feedback"
+                                                *ngIf="category.errors && (category.dirty || category.touched) || submitted">
+                                                <span style="color: red;" *ngIf="category.errors?.required">Field required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="showOtherCategoryField">
+                                        <div class="form-group">
+                                            <label>Please Specify<span style="color: red;">*</span></label>
+                                            <input formControlName="other_category" type="text" class="form-control" placeholder="Enter your category">
+                                            <div class="form-control-feedback" *ngIf="other.errors && (other.dirty || other.touched) || submitted">
+                                                <span style="color: red;" *ngIf="other.errors?.required">Field required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <label>Password<span style="color: red;">*</span></label>
                                         <div class="form-group">
-
                                             <input formControlName="password" type="password" class="form-control" placeholder="Enter password">
-
                                               <div class="form-control-feedback" *ngIf="pass.errors && (pass.dirty || pass.touched) || submitted">
-                                                <span style="color: red;" *ngIf="pass.errors?.required">field required</span>
+                                                <span style="color: red;" *ngIf="pass.errors?.required">Field required</span>
                                                 <span style="color: red;" *ngIf="pass.errors?.minlength">Password must be at least 6 characters</span>
                                              </div>
                                         </div>
@@ -337,16 +309,13 @@
                                     <div class="col-md-6">
                                         <label>Confirm Password<span style="color: red;">*</span></label>
                                         <div class="form-group">
-
                                             <input formControlName="confirm_pass" (paste)="$event.preventDefault()" type="password" class="form-control" placeholder="Confirm password">
-
                                             <div class="form-control-feedback" *ngIf="cpass.errors && (cpass.dirty || cpass.touched) || submitted">
-                                                <span style="color: red;" *ngIf="cpass.errors?.required">field required</span>
+                                                <span style="color: red;" *ngIf="cpass.errors?.required">Field required</span>
                                                 <span style="color: red;" *ngIf="cpass.errors?.mustMatch">Passwords must match</span>
                                              </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -367,29 +336,21 @@
 
                                 </div><br/>
 
-
-                                    <button type="submit" class="btn btn-primary" [disabled]="loading">
+                                    <button type="submit" class="btnn btn-primaryy mr-lg-0 d-none d-sm-block" [disabled]="loading">
                                         <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status" aria-hidden="true"></span>
-                                        Register
+                                        Create Account
                                     </button>
-
-
                             </form>
                         </div>
 
                     </div>
-
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<app-who-we-are></app-who-we-are>
-
+<!-- <app-who-we-are></app-who-we-are> -->
+<app-why-join-us></app-why-join-us>
 <app-faq></app-faq>
-
 <app-contact></app-contact>
