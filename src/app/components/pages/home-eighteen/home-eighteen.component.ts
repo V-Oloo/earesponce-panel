@@ -214,10 +214,6 @@ export class HomeEighteenComponent implements OnInit {
         // });
 
     }
-
-
-
-
   }
 
   otherRaces(event) {
