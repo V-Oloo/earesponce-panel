@@ -13,7 +13,6 @@ import { AppComponent } from "./app.component";
 import { PreloaderComponent } from "./components/layouts/preloader/preloader.component";
 import { FooterComponent } from "./components/layouts/footer/footer.component";
 import { NavbarComponent } from "./components/layouts/navbar/navbar.component";
-import { WhoWeAreComponent } from "./components/layouts/who-we-are/who-we-are.component";
 import { HomeEighteenComponent } from "./components/pages/home-eighteen/home-eighteen.component";
 import { ErrorComponent } from "./components/pages/error/error.component";
 import { FaqComponent } from "./components/layouts/faq/faq.component";
@@ -31,7 +30,6 @@ import { WhyJoinUsComponent } from "./components/layouts/why-join-us/why-join-us
         NavbarComponent,
         SuccessComponent,
         ContactComponent,
-        WhoWeAreComponent,
         HomeEighteenComponent,
         ErrorComponent,
         FaqComponent,
