@@ -356,14 +356,18 @@ export class HomeEighteenComponent implements OnInit {
                this.registrationForm.reset();
             },
            err => {
-               this.loading = false,
-               this.error= err.error.message,
-               this.toastr.error('Error!', this.error, {timeOut: 8000, closeButton: true});
-               console.log(err)
+               this.loading = false
+               if (err.error.message){
+                   this.error = err.error.message
+                   this.toastr.error('Error!', this.error, {timeOut: 8000, closeButton: true});
+               } else {
+                   this.error = "An Error occured please try again"
+                   this.toastr.error('Error!', this.error, {timeOut: 8000, closeButton: true});
+               }
+
             }
 
            );
-      console.log(this.registrationForm.value);
   }
 
 }
