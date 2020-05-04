@@ -53,4 +53,15 @@ export class HomeService {
   getRace() {
     return this.http.get(this.global._BaseUri + `/races`).pipe(map((data: any) => data), shareReplay());
   }
+
+  getYear(){
+    return this.http.get(this.global._BaseUri + `/years`).pipe(map((data: any) => data), shareReplay());
+  }
+
+  getMonths(){
+    return this.http.get(this.global._BaseUri + `/months`).pipe(map((data: any) => data), shareReplay());
+}
+getDays(){
+    return this.http.get(this.global._BaseUri + `/days`).pipe(map((data: any) => data), shareReplay());
+}
 }

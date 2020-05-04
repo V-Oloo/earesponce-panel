@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Gender<span style="color: red;">*</span></label>
                                             <select class="custom-select" formControlName="gender">
@@ -71,21 +71,47 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Date Of Birth<span style="color: red;">*</span></label>
-                                            <input type="text"
-                                                placeholder="Date of birth"
-                                                formControlName="dob"
-                                                class="form-control"
-                                                [maxDate]="today"
-                                                bsDatepicker>
-                                                <div class="form-control-feedback" *ngIf="dob.errors && (dob.dirty || dob.touched) || submitted">
-                                                    <span style="color: red;" *ngIf="dob.errors?.required">This field is required</span>
-                                                 </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <select class="custom-select" formControlName="day">
+                                                        <option value="" disabled>Day</option>
+                                                        <option *ngFor="let day of dais" [ngValue]="day.day" >{{day.day}}</option>
+                                                     </select>
+                                                     <div class="form-control-feedback" *ngIf="day.errors && (day.dirty || day.touched) || submitted">
+                                                        <span style="color: red;" *ngIf="day.errors?.required">Day required</span>
+                                                     </div>
+
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <select class="custom-select" formControlName="month">
+                                                        <option value="" disabled>Month</option>
+                                                        <option *ngFor="let month of months" [ngValue]="month.month_value" >{{month.month}}</option>
+                                                     </select>
+                                                     <div class="form-control-feedback" *ngIf="month.errors && (month.dirty || month.touched) || submitted">
+                                                        <span style="color: red;" *ngIf="month.errors?.required">Month required</span>
+                                                     </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <select class="custom-select" formControlName="year">
+                                                        <option value="" disabled>Year</option>
+                                                        <option *ngFor="let year of years" [ngValue]="year.year" >{{year.year}}</option>
+                                                     </select>
+                                                     <div class="form-control-feedback" *ngIf="year.errors && (year.dirty || year.touched) || submitted">
+                                                        <span style="color: red;" *ngIf="year.errors?.required">Year required</span>
+                                                     </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="row">

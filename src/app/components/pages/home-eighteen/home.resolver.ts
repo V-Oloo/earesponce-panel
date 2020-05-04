@@ -30,10 +30,16 @@ import { Injectable } from '@angular/core';
 
        const race = this.service.getRace();
 
+       const year = this.service.getYear();
+
+       const months = this.service.getMonths();
+
+       const days = this.service.getDays()
 
 
 
-      return forkJoin([countris, regions, education, employment, marital, towns, health, race]);
+
+      return forkJoin([countris, regions, education, employment, marital, towns, health, race, year, months, days]);
 
 
 

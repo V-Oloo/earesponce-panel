@@ -45,8 +45,16 @@ export class HomeEighteenComponent implements OnInit {
     return this.registrationForm.get('gender');
   }
 
-  get dob() {
-    return this.registrationForm.get('dob');
+  get day() {
+    return this.registrationForm.get('day');
+  }
+
+  get month() {
+    return this.registrationForm.get('month');
+  }
+
+  get year() {
+    return this.registrationForm.get('year');
   }
 
   get email() {
@@ -129,7 +137,7 @@ export class HomeEighteenComponent implements OnInit {
     return this.registrationForm.get('other_race');
   }
 
-  countries; regions; empState; maritalState; education; filterRegions; healthCartegory; race
+  countries; regions; empState; maritalState; education; filterRegions; healthCartegory; race; years; months; dais;
 
   urlParams: any = {};
 
@@ -145,7 +153,9 @@ export class HomeEighteenComponent implements OnInit {
         first_name: ['', [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
         last_name: ['', [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
         gender: ['', [Validators.required]],
-        dob: ['', [Validators.required]],
+        day: ['', [Validators.required]],
+        month: ['', [Validators.required]],
+        year: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email ]],
         verify_email: ['', [Validators.required]],
         country_id: ['', [Validators.required]],
@@ -184,6 +194,9 @@ export class HomeEighteenComponent implements OnInit {
         this.towns = data.stats[5]
         this.healthCartegory = data.stats[6];
         this.race = data.stats[7];
+        this.years = data.stats[8];
+        this.months = data.stats[9];
+        this.dais = data.stats[10];
         console.log(this.race)
         console.log(this.towns)
     });
@@ -337,9 +350,12 @@ export class HomeEighteenComponent implements OnInit {
         const number = country_code + phone_no
         const race = this.registrationForm.value.race_id
         const other_race = this.registrationForm.value.other_race
+        const day = this.registrationForm.value.day
+        const month = this.registrationForm.value.month
+        const year = this.registrationForm.value.year
         const ref = this.urlParams.ref
 
-        let data = {first_name: first_name,last_name: last_name,gender: gender,dob: dob,email:email,
+        let data = {first_name: first_name,last_name: last_name,gender: gender,dob_day: day,dob_month: month,dob_year: year,email:email,
                       country_id: country_id,region_id: region_id,phone_no: number,education_level_id: education_level_id,
                       employment_status_id: employment_status_id,marital_status_id: marital_status_id,
                       password: password, town: town, ref: ref, health_care: health_care, sector_id: sector_id,
