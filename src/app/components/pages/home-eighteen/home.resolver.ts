@@ -24,10 +24,22 @@ import { Injectable } from '@angular/core';
 
        const marital = this.service.getMaritalStatus();
 
+       const towns = this.service.getTowns();
+
+       const health = this.service.getHealthCare();
+
+       const race = this.service.getRace();
+
+       const year = this.service.getYear();
+
+       const months = this.service.getMonths();
+
+       const days = this.service.getDays()
 
 
 
-      return forkJoin([countris, regions, education, employment, marital]);
+
+      return forkJoin([countris, regions, education, employment, marital, towns, health, race, year, months, days]);
 
 
 

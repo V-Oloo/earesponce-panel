@@ -2,9 +2,10 @@ import { HomeService } from './../../services/home.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MustMatch } from './password.validator';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash'
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-eighteen',
@@ -14,14 +15,24 @@ import { DatePipe } from '@angular/common';
 export class HomeEighteenComponent implements OnInit {
   registrationForm: FormGroup;
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, private service: HomeService, private _route: ActivatedRoute, private datePipe: DatePipe) { }
+  constructor(private fb: FormBuilder,
+              private service: HomeService,
+              private _route: ActivatedRoute,
+              private datePipe: DatePipe,
+              private router: Router,
+              private toastr: ToastrService
+              ) { }
   public submitted = false;
   public loading = false;
+  showForms = true;
   message: string;
   error: string;
   lmessage: string;
   lerror: string;
-
+  today = new Date();
+  days;
+  towns;
+  region_towns
   get fname() {
     return this.registrationForm.get('first_name');
   }
@@ -34,8 +45,16 @@ export class HomeEighteenComponent implements OnInit {
     return this.registrationForm.get('gender');
   }
 
-  get dob() {
-    return this.registrationForm.get('dob');
+  get day() {
+    return this.registrationForm.get('day');
+  }
+
+  get month() {
+    return this.registrationForm.get('month');
+  }
+
+  get year() {
+    return this.registrationForm.get('year');
   }
 
   get email() {
@@ -94,17 +113,51 @@ export class HomeEighteenComponent implements OnInit {
     return this.loginForm.get('email');
   }
 
-  countries; regions; empState; maritalState; education; filterRegions;
+  get category() {
+    return this.registrationForm.get('sector_category_id');
+  }
+
+  get sector() {
+    return this.registrationForm.get('sector_id');
+  }
+
+  get health() {
+    return this.registrationForm.get('health_care');
+  }
+
+  get other() {
+    return this.registrationForm.get('other_category');
+  }
+
+  get races() {
+    return this.registrationForm.get('race_id');
+  }
+
+  get oraces() {
+    return this.registrationForm.get('other_race');
+  }
+
+  countries; regions; empState; maritalState; education; filterRegions; healthCartegory; race; years; months; dais;
+
+  urlParams: any = {};
+
+  showHealthcareFields = false
+  showOtherCategoryField = false
+  showRaceField = false
+  showOtherRacesField = false
 
   ngOnInit() {
+    this.urlParams.ref = this._route.snapshot.queryParamMap.get('ref');
     this.getDashboardData();
     this.registrationForm = this.fb.group({
         first_name: ['', [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
         last_name: ['', [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
         gender: ['', [Validators.required]],
-        dob: ['', [Validators.required]],
+        day: ['', [Validators.required]],
+        month: ['', [Validators.required]],
+        year: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email ]],
-        // verify_email: ['', [Validators.required, Validators.email ]],
+        verify_email: ['', [Validators.required]],
         country_id: ['', [Validators.required]],
         region_id: ['', [Validators.required]],
         phone_no: ['', [Validators.required]],
@@ -115,7 +168,14 @@ export class HomeEighteenComponent implements OnInit {
         country_code: [{value: '', disabled: true}],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirm_pass: ['', [Validators.required]],
-      },{validators: MustMatch('password', 'confirm_pass'), validator: MustMatch('email','verify_email')});
+        health_care: ['', [Validators.required]],
+        sector_id: ['', [Validators.required]],
+        sector_category_id: ['', [Validators.required]],
+        other_category: [''],
+        race_id: [''],
+        other_race: [''],
+        terms: ['',[Validators.requiredTrue]],
+      },{validators:[MustMatch('password', 'confirm_pass'), MustMatch('email','verify_email')]});
 
       this.loginForm = this.fb.group({
         email: ['', [Validators.required]],
@@ -131,22 +191,65 @@ export class HomeEighteenComponent implements OnInit {
         this.education = data.stats[2];
         this.empState = data.stats[3];
         this.maritalState = data.stats[4]
-        console.log(this.education);
+        this.towns = data.stats[5]
+        this.healthCartegory = data.stats[6];
+        this.race = data.stats[7];
+        this.years = data.stats[8];
+        this.months = data.stats[9];
+        this.dais = data.stats[10];
+        console.log(this.race)
+        console.log(this.towns)
     });
   }
 
   getCountryRegion(event: any) {
+     const race = this.registrationForm.controls['race_id']
 
-     const id = event.target.selectedIndex
-     console.log(id);
+     const value = event.target.value
+     var splitted = value.split(" ",2)
+     var id = +splitted[1]
      this.filterRegions = _.filter(this.regions, { 'country_id': id });
-     console.log(this.filterRegions);
      this.selectedCountry(id);
+
+     if (id === 197) {
+        this.showRaceField = true
+        // this.registrationForm.get('country_id').valueChanges.subscribe(country => {
+        //     console.log(country)
+        //     race.setValidators([Validators.required]);
+        //     race.updateValueAndValidity();
+        // });
+
+    } else {
+        this.showRaceField = false
+        // this.registrationForm.get('country_id').valueChanges.subscribe(country => {
+        //     race.setValidators(null);
+        //     race.updateValueAndValidity();
+        // });
+
+    }
   }
+
+  otherRaces(event) {
+   const value = event.target.value
+   var splitted = value.split(" ",2)
+   var id = +splitted[1]
+   if (id === 5) {
+       this.showOtherRacesField = true;
+   } else {
+    this.showOtherRacesField = false;
+   }
+  }
+
+  getRegionTown(value) {
+    const target = value
+    var splitted = target.split(" ",2)
+    var id = +splitted[1]
+    this.region_towns = _.filter(this.towns, { 't_region_id': id });
+ }
+
 
   selectedCountry(id: number) {
     const result = _.find(this.countries, {'country_id' : id});
-    console.log(result);
     const code = result.phone_code;
     this.registrationForm.patchValue({
      country_code: code,
@@ -154,9 +257,72 @@ export class HomeEighteenComponent implements OnInit {
 
    }
 
+   setradio(value) {
+
+    const category = this.registrationForm.controls['sector_category_id']
+    const sector = this.registrationForm.controls['sector_id']
+
+    if(value === '1'){
+        this.showHealthcareFields = true
+
+        this.registrationForm.get('health_care').valueChanges.subscribe(health_care => {
+             category.setValidators([Validators.required]);
+             category.updateValueAndValidity();
+             sector.setValidators([Validators.required]);
+             sector.updateValueAndValidity();
+        });
+    } else {
+        this.showHealthcareFields = false
+        this.showOtherCategoryField = false,
+        this.registrationForm.get('health_care').valueChanges.subscribe(health_care => {
+            category.setValidators(null);
+            category.updateValueAndValidity();
+            sector.setValidators(null);
+            sector.updateValueAndValidity();
+       });
+
+    }
+
+   }
+
+   selectOther(event) {
+    const other_category = this.registrationForm.controls['other_category']
+
+    const target = event.target.value
+    var splitted = target.split(" ",2)
+    var id = +splitted[1]
+    console.log(event.target.value)
+
+     if (id === 11) {
+        this.showOtherCategoryField = true;
+     } else {
+        this.showOtherCategoryField = false;
+     }
+
+
+    //   this.registrationForm.get('sector_category_id').valueChanges.subscribe(s => {
+    //       if (s) {
+    //         if(id === 11) {
+    //             //this.showOtherCategoryField = true,
+    //           other_category.setValidators([Validators.required]);
+    //            other_category.updateValueAndValidity();
+    //           console.log("required set")
+
+    //         } else if(id !== 11) {
+    //             //this.showOtherCategoryField = false,
+
+    //           other_category.setValidators(null);
+    //           other_category.updateValueAndValidity();
+    //         }
+
+    //       }
+
+    //    });
+
+   }
+
   registerUser() {
     this.submitted = true;
-
      if (this.registrationForm.invalid) {
         this.loading = false;
          return;
@@ -177,48 +343,47 @@ export class HomeEighteenComponent implements OnInit {
         const country_code= this.registrationForm.getRawValue().country_code
         const password= this.registrationForm.value.password
         const town = this.registrationForm.value.town
+        const health_care = this.registrationForm.value.health_care
+        const sector_id = this.registrationForm.value.sector_id
+        const sector_category_id = this.registrationForm.value.sector_category_id
+        const other_category = this.registrationForm.value.other_category
         const number = country_code + phone_no
+        const race = this.registrationForm.value.race_id
+        const other_race = this.registrationForm.value.other_race
+        const day = this.registrationForm.value.day
+        const month = this.registrationForm.value.month
+        const year = this.registrationForm.value.year
+        const ref = this.urlParams.ref
 
-        let data = {first_name: first_name,last_name: last_name,gender: gender,dob: dob,email:email,
+        let data = {first_name: first_name,last_name: last_name,gender: gender,dob_day: day,dob_month: month,dob_year: year,email:email,
                       country_id: country_id,region_id: region_id,phone_no: number,education_level_id: education_level_id,
                       employment_status_id: employment_status_id,marital_status_id: marital_status_id,
-                      password: password, town: town}
+                      password: password, town: town, ref: ref, health_care: health_care, sector_id: sector_id,
+                      sector_category_id: sector_category_id, other_category: other_category, race_id:race, other_race: other_race
+                    }
 
        this.service.register(data).subscribe(
            res => {
+
                this.loading = false,
-               this.message = res.success
+               this.showForms = false;
+              this.router.navigate(['/success'])
                console.log(res);
                this.registrationForm.reset();
             },
-           err => {this.loading = false, this.error= err.error.message, console.log(err)}
+           err => {
+               this.loading = false
+               if (err.error.message){
+                   this.error = err.error.message
+                   this.toastr.error('Error!', this.error, {timeOut: 8000, closeButton: true});
+               } else {
+                   this.error = "An Error occured please try again"
+                   this.toastr.error('Error!', this.error, {timeOut: 8000, closeButton: true});
+               }
+
+            }
 
            );
-      console.log(this.registrationForm.value);
-  }
-
-  loginUser() {
-    this.submitted = true;
-
-      if (this.loginForm.invalid) {
-        // this.loading = false;
-         return;
-      }
-       console.log(this.loginForm.value);
-       this.loading = true;
-      this.service.login(this.loginForm.value).subscribe(
-          res => {
-              this.loading = false
-              const url = res.redirect_to
-              console.log(url)
-              window.location.href = url
-              this.lmessage = res.success,
-              console.log(res)},
-          err => {
-              this.loading = false
-              this.lerror= err.error.message,
-              console.log(err)}
-      );
   }
 
 }

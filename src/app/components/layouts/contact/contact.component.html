@@ -1,19 +1,50 @@
 <section id="contact" class="contact-area ptb-100 bg-image">
     <div class="container">
         <div class="section-title">
-            <span>Get In Touch</span>
-            <h2>Let's <b>Contact</b> Us</h2>
-            <p>If you’d like a free consultation, please start by completing the form below:</p>
+            <span style="color: black;">Get In Touch</span>
+            <h2><b>Contact </b> Us</h2>
+            <p>
+                If you’d like a free consultation, please start by completing
+                the form below:
+            </p>
         </div>
         <div class="row">
             <div class="col-lg-5 col-md-12">
                 <div class="contact-info">
                     <div class="d-table">
                         <div class="d-table-cell">
-                            <h2>Contact Information</h2>
                             <ul>
-                                <li><i class="icofont-envelope"></i> <span>Contact Us:</span>feedback@reinitresearch.com</li>
-
+                                <li>
+                                    <i class="icofont-google-map"></i>
+                                    <span>Location:</span>Headquaters Nairobi,
+                                    Kenya
+                                </li>
+                                <li>
+                                    <i class="icofont-envelope"></i>
+                                    <span>Email:</span
+                                    ><a
+                                        href="mailto:feedback@reinitresearch.com"
+                                        >feedback@reinitresearch.com</a
+                                    >
+                                </li>
+                                <li>
+                                    <i class="icofont-facebook"></i>
+                                    <span>Facebook:</span
+                                    ><a
+                                        href="https://www.facebook.com/reinitresearch/"
+                                        target="_blank"
+                                        >facebook.com/reinitresearch</a
+                                    >
+                                </li>
+                                <li>
+                                    <i class="icofont-instagram"></i>
+                                    <span>Instagram:</span
+                                    ><a
+                                        href="https://www.instagram.com/reinitresearch/"
+                                        target="_blank"
+                                        >instagram.com/reinitresearch</a
+                                    >
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -22,61 +53,153 @@
             <div class="col-lg-7 col-md-12">
                 <div class="contact-form">
                     <form [formGroup]="Form" (ngSubmit)="submitForm()">
-                        <div *ngIf="message" class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{message}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <div
+                            *ngIf="message"
+                            class="alert alert-success alert-dismissible fade show"
+                            role="alert"
+                        >
+                            {{ message }}
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                            >
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div *ngIf="error" class="alert alert-danger alert-dismissible fade show"  role="alert">
-                            {{error}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <div
+                            *ngIf="error"
+                            class="alert alert-danger alert-dismissible fade show"
+                            role="alert"
+                        >
+                            {{ error }}
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                            >
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="text" formControlName="name" class="form-control" placeholder="Name">
-                                    <div class="form-control-feedback"
-                                    *ngIf="name.errors && (name.dirty || name.touched)">
-                                    <p *ngIf="name.errors.required"><span style="color: red;">field required</span></p>
-                                    <p *ngIf="name.errors.pattern"><span style="color: red;">invalid name</span></p>
-                                </div>
+                                    <input
+                                        type="text"
+                                        formControlName="name"
+                                        class="form-control"
+                                        placeholder="Name"
+                                    />
+                                    <div
+                                        class="form-control-feedback"
+                                        *ngIf="
+                                            name.errors &&
+                                            (name.dirty || name.touched)
+                                        "
+                                    >
+                                        <p *ngIf="name.errors.required">
+                                            <span style="color: red;"
+                                                >This field is required</span
+                                            >
+                                        </p>
+                                        <p *ngIf="name.errors.pattern">
+                                            <span style="color: red;"
+                                                >Invalid name</span
+                                            >
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="email" formControlName="email" class="form-control" placeholder="Email Address">
-                                    <div class="form-control-feedback"
-                                    *ngIf="email.errors && (email.dirty || email.touched)">
-                                    <p *ngIf="email.errors.required"><span style="color: red;">field required</span></p>
-                                    <p *ngIf="email.errors.email"><span style="color: red;">Invalid Email</span></p>
-                                </div>
+                                    <input
+                                        type="email"
+                                        formControlName="email"
+                                        class="form-control"
+                                        placeholder="Email Address"
+                                    />
+                                    <div
+                                        class="form-control-feedback"
+                                        *ngIf="
+                                            email.errors &&
+                                            (email.dirty || email.touched)
+                                        "
+                                    >
+                                        <p *ngIf="email.errors.required">
+                                            <span style="color: red;"
+                                                >This field is required</span
+                                            >
+                                        </p>
+                                        <p *ngIf="email.errors.email">
+                                            <span style="color: red;"
+                                                >Invalid email</span
+                                            >
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
-                                    <input type="text" formControlName="subject"  class="form-control" placeholder="Subject">
-                                    <div class="form-control-feedback"
-                                        *ngIf="subj.errors && (subj.dirty || subj.touched)">
-                                        <p *ngIf="subj.errors.required"><span style="color: red;">field required</span></p>
+                                    <input
+                                        type="text"
+                                        formControlName="subject"
+                                        class="form-control"
+                                        placeholder="Subject"
+                                    />
+                                    <div
+                                        class="form-control-feedback"
+                                        *ngIf="
+                                            subj.errors &&
+                                            (subj.dirty || subj.touched)
+                                        "
+                                    >
+                                        <p *ngIf="subj.errors.required">
+                                            <span style="color: red;"
+                                                >This field is required</span
+                                            >
+                                        </p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
-                                    <textarea placeholder="Message" formControlName="message" class="form-control" cols="30" rows="5"></textarea>
-                                    <div class="form-control-feedback"
-                                        *ngIf="mess.errors && (mess.dirty || mess.touched)">
-                                        <span style="color: red;" *ngIf="mess.errors.required">field required</span>
+                                    <textarea
+                                        placeholder="Message"
+                                        formControlName="message"
+                                        class="form-control"
+                                        cols="30"
+                                        rows="5"
+                                    ></textarea>
+                                    <div
+                                        class="form-control-feedback"
+                                        *ngIf="
+                                            mess.errors &&
+                                            (mess.dirty || mess.touched)
+                                        "
+                                    >
+                                        <span
+                                            style="color: red;"
+                                            *ngIf="mess.errors.required"
+                                            >This field is required</span
+                                        >
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12">
-                                <button type="submit" [disabled]="loading || Form.invalid" class="btn btn-primary">
-                                    <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status" aria-hidden="true"></span>
+                                <button
+                                    type="submit"
+                                    class="btnn btn-primaryy mr-lg-0 d-none d-sm-block"
+                                    [disabled]="loading"
+                                >
+                                    <span
+                                        class="spinner-border spinner-border-sm"
+                                        *ngIf="loading"
+                                        role="status"
+                                        aria-hidden="true"
+                                    ></span>
                                     Send Message
                                 </button>
                             </div>
