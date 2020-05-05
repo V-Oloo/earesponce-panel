@@ -21,7 +21,7 @@
     "@angular/router": "~8.2.14",
     "bootstrap": "^4.4.1",
     "google-libphonenumber": "^3.2.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.5.0",
     "ngx-international-phone-number": "^1.0.6",
