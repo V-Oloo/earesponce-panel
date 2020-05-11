@@ -159,9 +159,7 @@ export class HomeEighteenComponent implements OnInit {
 
     ngOnInit() {
         this.urlParams.ref = this._route.snapshot.queryParamMap.get("ref");
-        this.urlParams.partner = this._route.snapshot.queryParamMap.get(
-            "partner"
-        );
+        this.urlParams.partner = this._route.snapshot.queryParamMap.get("partner");
         this.getDashboardData();
         this.registrationForm = this.fb.group(
             {
